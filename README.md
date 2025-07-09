@@ -4,6 +4,8 @@
 Was tun mit einem alten Lenovo X201?  
 → Einen flüsterleisen, stabilen und WLAN-fähigen Entwickler-/Heimserver bauen! 🦇
 
+Wieso Ubuntu und nicht Debian? [Hier](why-ubuntu.md)
+
 ---
 
 ## 📋 Inhaltsübersicht
