@@ -186,7 +186,55 @@ Dein X201 ist nun optimiert und abgesichert. Starte das System neu, um alle Änd
 sudo reboot
 ```
 
-> **Tipp:** Nach dem Neustart die Temperatur mit `sensors` überprüfen und die Sicherheitsdienste testen.
+
+## 💾 Backup & Restore Script
+
+Um dein System nach frischer Installation schnell und sicher zu sichern, nutze das [Backup & Restore Script](https://github.com/VolkanSah/Debian-System-Backup-and-Restore-Script/).
+
+### Funktionen
+
+* Sichert deine installierten Pakete, Konfigurationsdateien und optional das gesamte Dateisystem (ohne bestimmte Systemordner)
+* Legt Backups in `/backup/YYYYMMDD_HHMMSS` automatisch an
+* Loggt jeden Schritt ins Backup-Verzeichnis
+* Restore stellt Pakete und Konfigurationen wieder her, optional auch das gesamte System
+
+### Nutzung
+
+**Backup erstellen:**
+
+```bash
+sudo /batscripts/backup.sh backup
+```
+
+Für ein komplettes Full-Backup mit Systemdateien:
+
+```bash
+sudo /batscripts/backup.sh backup full
+```
+
+**Backup zurückspielen:**
+
+```bash
+sudo /batscripts/backup.sh restore /backup/20250709_191251
+```
+
+Für kompletten Restore inklusive Dateisystem:
+
+```bash
+sudo /batscripts/backup.sh restore /backup/20250709_191251 full
+```
+
+### Installation & Setup
+
+* Lege das Script z.B. nach `/batscripts/backup.sh`
+* Gib Ausführungsrechte: `sudo chmod +x /batscripts/backup.sh`
+* Optional: Alias anlegen für schnellen Zugriff (z.B. `batbackup`)
+
+### Tipp
+
+Automatisiere regelmäßige Backups mit Cronjobs, um immer eine aktuelle Sicherung parat zu haben.
+
+
 
 ---
 
