@@ -114,6 +114,18 @@ ping -I wlp2s0 8.8.8.8            # WLAN-Pingtest
 
 ## 🔒 5. Grundschutz & Sicherheit
 
+dpkg-reconfigure dash
+
+Benutzen Sie dash als Standard-System-Shell (/bin/sh)? <– Nein
+
+
+AppArmor deaktivieren
+
+service apparmor stop
+update-rc.d -f apparmor remove 
+apt-get remove apparmor apparmor-utils
+
+
 ### 🦠 ClamAV (Virenscanner)
 ```bash
 sudo apt install clamav clamav-daemon -y
