@@ -94,3 +94,20 @@ network={
 
 Nach Änderungen WLAN neu starten oder System rebooten, damit die Verbindung automatisch klappt.
 
+network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlp2s0:
+      dhcp4: true
+      access-points:
+        "DeinWLANName":
+          password: "DeinPasswort"
+Fix in 2 Sekunden:
+
+sudo chmod 600 /etc/netplan/01-netcfg.yaml
+
+Danach erneut:
+
+sudo netplan apply
+
