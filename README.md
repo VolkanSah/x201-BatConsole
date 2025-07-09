@@ -1,4 +1,3 @@
-
 # 🖥️ x201 – BatConsole Setup & Tuning Guide
 
 Was tun mit einem alten Lenovo X201?  
@@ -114,17 +113,17 @@ ping -I wlp2s0 8.8.8.8            # WLAN-Pingtest
 
 ## 🔒 5. Grundschutz & Sicherheit
 
-dpkg-reconfigure dash
+### 🛠️ System-Härtung
+```bash
+# Dash als /bin/sh deaktivieren (für Kompatibilität)
+sudo dpkg-reconfigure dash
+# Wähle "Nein" bei der Frage nach Standard-System-Shell
 
-Benutzen Sie dash als Standard-System-Shell (/bin/sh)? <– Nein
-
-
-AppArmor deaktivieren
-
-service apparmor stop
-update-rc.d -f apparmor remove 
-apt-get remove apparmor apparmor-utils
-
+# AppArmor deaktivieren (falls nicht benötigt)
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+sudo apt purge apparmor apparmor-utils -y
+```
 
 ### 🦠 ClamAV (Virenscanner)
 ```bash
@@ -151,26 +150,47 @@ sudo rkhunter --check
 ```bash
 sudo apt install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-sudo nano /etc/fail2ban/jail.local  # SSH-Härtung empfohlen
 ```
-Example:
-```
+
+#### Beispielkonfiguration für SSH-Härtung (`/etc/fail2ban/jail.local`):
+```ini
 [sshd]
-enabled  = true
-port     = ssh
-filter   = sshd
-logpath  = /var/log/auth.log
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
 maxretry = 3
-bantime  = 3600
+bantime = 3600
 findtime = 600
+```
+
+#### Konfiguration anwenden:
+```bash
+sudo systemctl restart fail2ban
 ```
 
 ### 📊 Statuschecks
 ```bash
+# Alle Sicherheitsdienste überprüfen
 sudo systemctl status clamav-daemon
 sudo fail2ban-client status
+sudo rkhunter --check --sk
 ```
 
 ---
 
+## 🎉 Fertigstellung
+Dein X201 ist nun optimiert und abgesichert. Starte das System neu, um alle Änderungen zu aktivieren:
 
+```bash
+sudo reboot
+```
+
+> **Tipp:** Nach dem Neustart die Temperatur mit `sensors` überprüfen und die Sicherheitsdienste testen.
+
+---
+
+## 🔗 Nützliche Links
+- [Ubuntu Server Guide](https://ubuntu.com/server/docs)
+- [ThinkPad Hardware-Support](https://www.thinkwiki.org)
+- [Linux Security Hardening](https://linuxsecurity.com/features)
