@@ -1,26 +1,22 @@
-# x201 – BatConsole Setup & Tipps
+# 🖥️ x201 – BatConsole Setup & Tuning Guide
 
-Was macht man mit nem alten Lenovo X201?
-Hier die besten Tricks, damit die Kiste zuverlässig, kühl und performant läuft – auch als Server mit WLAN.
+Was tun mit einem alten Lenovo X201?  
+→ Einen flüsterleisen, stabilen und sogar WLAN-fähigen Entwickler- oder Heimserver draus bauen! 🦇
 
 ---
 
-## 1. Systemoptimierung & Kühlung
+## ⚙️ 1. Systemoptimierung & Kühlung
 
-### tlp installieren
-
-Akku & CPU effizient managen (auch im Netzbetrieb):
+### 🔋 TLP für Akku & CPU-Optimierung
 
 ```bash
 sudo apt install tlp tlp-rdw
 sudo systemctl enable tlp --now
-```
+````
 
 ---
 
-### CPU-Governor festlegen
-
-Peaks bei unnötiger Last drosseln:
+### 🧠 CPU-Governor setzen
 
 ```bash
 sudo apt install cpufrequtils
@@ -28,13 +24,13 @@ echo 'GOVERNOR="powersave"' | sudo tee /etc/default/cpufrequtils
 sudo systemctl restart cpufrequtils
 ```
 
-**Tipp:** Alternativ konservativ für bessere Balance:
+**Empfehlung für Dauerbetrieb:**
 
 ```bash
 sudo cpufreq-set -g conservative
 ```
 
-Oder dauerhaft ändern:
+Oder dauerhaft:
 
 ```bash
 echo 'GOVERNOR="conservative"' | sudo tee /etc/default/cpufrequtils
@@ -43,13 +39,15 @@ sudo systemctl restart cpufrequtils
 
 ---
 
-### Temperatur & Throttling live checken
+### 🌡️ Temperatur & Throttling live checken
 
 ```bash
+sudo apt install lm-sensors
+sudo sensors-detect
 watch -n 1 "sensors && cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
 ```
 
-Oder CPU-Frequenz beobachten:
+**CPU MHz-Anzeige:**
 
 ```bash
 watch -n 1 "grep 'MHz' /proc/cpuinfo"
@@ -57,28 +55,28 @@ watch -n 1 "grep 'MHz' /proc/cpuinfo"
 
 ---
 
-## 2. BIOS-Einstellungen (sofern zugänglich)
+## 🧬 2. BIOS-Tuning
 
-* Hyperthreading **an** (aus = weniger Hit) ✅
-* Intel Turbo Boost **aus** (nur wenn’s zu heiß wird) ❌
-* Lüftersteuerung auf „Performance“ stellen, falls möglich
+* ✅ Hyper-Threading **an**
+* ❌ Intel Turbo Boost **aus**, wenn zu heiß
+* 🔧 Lüftersteuerung auf „Performance“ (falls möglich)
 
 ---
 
-## 3. Lüfter & Stress-Test (Nice-to-have)
+## 🌀 3. Lüfter & Last-Test (optional)
 
 ```bash
 sudo apt install fancontrol pwmconfig stress s-tui
-sudo pwmconfig        # Lüfterdrehzahl anpassen (vorsichtig bei Laptops)
-stress --cpu 4        # CPU-Stresstest (je nach Kernanzahl)
-s-tui                 # Terminal CPU Temperatur & Last Monitor
+sudo pwmconfig        # Vorsicht bei Laptops
+stress --cpu 4        # Je nach Kernanzahl
+s-tui                 # CPU Load & Temp in Echtzeit
 ```
 
 ---
 
-## 4. WLAN Setup (erstes Mal auf Server)
+## 📶 4. WLAN-Setup für Serverbetrieb
 
-Datei: `/etc/wpa_supplicant/wpa_supplicant.conf` anlegen oder bearbeiten:
+### A) WPA-Konfiguration (`/etc/wpa_supplicant/wpa_supplicant.conf`)
 
 ```conf
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -92,8 +90,11 @@ network={
 }
 ```
 
-Nach Änderungen WLAN neu starten oder System rebooten, damit die Verbindung automatisch klappt.
+---
 
+### B) Netplan WLAN aktivieren (`/etc/netplan/01-netcfg.yaml`)
+
+```yaml
 network:
   version: 2
   renderer: networkd
@@ -103,11 +104,25 @@ network:
       access-points:
         "DeinWLANName":
           password: "DeinPasswort"
-Fix in 2 Sekunden:
+```
 
+**Wichtig:**
+Fixe die Berechtigungen:
+
+```bash
 sudo chmod 600 /etc/netplan/01-netcfg.yaml
-
-Danach erneut:
-
 sudo netplan apply
+```
+
+---
+
+## 🧪 Bonus: WLAN testen
+
+```bash
+iw dev wlp2s0 link                # Verbindung prüfen
+ip route | grep default           # Aktives Interface
+ping -I wlp2s0 8.8.8.8            # Ping über WLAN
+```
+
+---
 
