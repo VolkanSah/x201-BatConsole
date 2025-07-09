@@ -125,4 +125,55 @@ ping -I wlp2s0 8.8.8.8            # Ping über WLAN
 ```
 
 ---
+Klaro, hier ist der **Sicherheits-Abschnitt** für deine README – einfach hinten dranklatschen:
+
+---
+
+````markdown
+## 🔒 5. Grundschutz & Sicherheit
+
+### ClamAV (Virenscanner + Daemon)
+```bash
+sudo apt install clamav clamav-daemon -y
+sudo systemctl enable clamav-freshclam --now
+sudo freshclam
+````
+
+### chkrootkit (Rootkit-Scanner)
+
+```bash
+sudo apt install chkrootkit -y
+sudo chkrootkit
+```
+
+### rkhunter (Rootkit Hunter)
+
+```bash
+sudo apt install rkhunter -y
+sudo rkhunter --update
+sudo rkhunter --propupd
+sudo rkhunter --check
+```
+
+### fail2ban (Schutz vor Brute-Force)
+
+```bash
+sudo apt install fail2ban -y
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo nano /etc/fail2ban/jail.local
+```
+
+**Tipp:** Logins per SSH absichern mit `[sshd]`-Block in `jail.local`.
+
+### Check & Status
+
+```bash
+sudo systemctl status clamav-daemon
+sudo fail2ban-client status
+sudo chkrootkit
+sudo rkhunter --check
+```
+
+
+
 
