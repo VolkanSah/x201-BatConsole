@@ -141,6 +141,17 @@ sudo apt install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo nano /etc/fail2ban/jail.local  # SSH-Härtung empfohlen
 ```
+Example:
+```
+[sshd]
+enabled  = true
+port     = ssh
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 3
+bantime  = 3600
+findtime = 600
+```
 
 ### 📊 Statuschecks
 ```bash
