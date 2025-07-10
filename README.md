@@ -1,244 +1,217 @@
-# 🖥️ x201 – BatConsole Setup & Tuning Guide
-
-Was tun mit einem alten Lenovo X201?  
-→ Einen flüsterleisen, stabilen und WLAN-fähigen Entwickler-/Heimserver bauen! 🦇
-
-Wieso Ubuntu und nicht Debian? [Hier](why-ubuntu.md)
+Klar, hier ist die komplette Übersetzung deiner `cap-2.md` ins Englische, sauber und mit Verweisen auf die anderen Kapitel:
 
 ---
 
-## 📋 Inhaltsübersicht
-1. [Systemoptimierung & Kühlung](#-1-systemoptimierung--kühlung)
-2. [BIOS-Tuning](#-2-bios-tuning)
-3. [Lüfter & Last-Test](#-3-lüfter--last-test-optional)
-4. [WLAN-Setup](#-4-wlan-setup-für-serverbetrieb)
-5. [Sicherheit](#-5-grundschutz--sicherheit)
+# x201 – Webserver & Database Setup
+
+## Table of Contents
+
+1. [LAMP + Python Stack](#1-lamp--python-stack)
+2. [Securing & Hardening Databases](#2-securing--hardening-databases)
+3. [Python AI Environment](#3-python-ai-environment)
+4. [Web Management Tools](#4-web-management-tools)
+5. [Performance Optimizations](#5-performance-optimizations)
+6. [Security Configuration & Tor](#6-security-configuration--tor)
+7. [Finalization](#7-finalization)
+8. [Useful Links](#8-useful-links)
 
 ---
 
-## ⚙️ 1. Systemoptimierung & Kühlung
+## 1. LAMP + Python Stack
 
-### 🔋 TLP für Akku & CPU-Optimierung
+### Apache + PHP
+
 ```bash
-sudo apt install tlp tlp-rdw
-sudo systemctl enable tlp --now
+sudo apt install apache2 php8.3 php8.3-fpm libapache2-mod-php8.3
 ```
 
-### 🧠 CPU-Governor setzen
+### PHP Extensions
+
 ```bash
-sudo apt install cpufrequtils
-echo 'GOVERNOR="powersave"' | sudo tee /etc/default/cpufrequtils
-sudo systemctl restart cpufrequtils
+sudo apt install php8.3-mysql php8.3-pgsql php8.3-gd php8.3-curl \
+php8.3-zip php8.3-xml php8.3-mbstring php8.3-intl php8.3-bcmath \
+php8.3-imagick php8.3-opcache php8.3-apcu php8.3-sqlite3 \
+php8.3-ldap php8.3-imap php8.3-soap php8.3-xmlrpc php8.3-xsl php8.3-bz2
 ```
 
-#### 🔄 Dauerhafte Einstellung (empfohlen)
+### Databases
+
 ```bash
-echo 'GOVERNOR="conservative"' | sudo tee /etc/default/cpufrequtils
-sudo systemctl restart cpufrequtils
+sudo apt install mariadb-server postgresql postgresql-contrib
 ```
 
-### 🌡️ Temperaturüberwachung
-```bash
-sudo apt install lm-sensors
-sudo sensors-detect
-watch -n 1 "sensors && cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
-```
+### Python (for AI & Backend)
 
-#### 📊 CPU-Frequenz anzeigen
 ```bash
-watch -n 1 "grep 'MHz' /proc/cpuinfo"
+sudo apt install python3.12 python3.12-venv python3-pip
 ```
 
 ---
 
-## 🧬 2. BIOS-Tuning
-- ✅ Hyper-Threading **aktivieren**
-- ❌ Intel Turbo Boost **deaktivieren** (bei Überhitzung)
-- 🔧 Lüftersteuerung auf "Performance" (falls verfügbar)
+## 2. Securing & Hardening Databases
 
----
+### Secure MariaDB
 
-## 🌀 3. Lüfter & Last-Test (optional)
 ```bash
-sudo apt install fancontrol pwmconfig stress s-tui
-sudo pwmconfig        # Achtung bei Laptops!
-stress --cpu 4        # Anzahl der Kerne anpassen
-s-tui                 # Echtzeit-Monitoring
+sudo mysql_secure_installation
 ```
 
----
+### Set PostgreSQL Password
 
-## 📶 4. WLAN-Setup für Serverbetrieb
+```bash
+sudo -u postgres psql
+ALTER USER postgres PASSWORD 'your_strong_password';
+\q
+```
 
-### 📂 WPA-Konfiguration (`/etc/wpa_supplicant/wpa_supplicant.conf`)
+### Change Authentication Method (Example for Version 16)
+
+```bash
+sudo nano /etc/postgresql/16/main/pg_hba.conf
+```
+
+Change this line:
+
 ```conf
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=DE
-
-network={
-    ssid="DeinWLANName"
-    psk="DeinPasswort"
-    key_mgmt=WPA-PSK
-}
+local   all   postgres   peer
 ```
 
-### 🌐 Netplan Konfiguration (`/etc/netplan/01-netcfg.yaml`)
-```yaml
-network:
-  version: 2
-  renderer: networkd
-  wifis:
-    wlp2s0:
-      dhcp4: true
-      access-points:
-        "DeinWLANName":
-          password: "DeinPasswort"
+to:
+
+```conf
+local   all   postgres   md5
 ```
 
-#### 🔒 Berechtigungen setzen
+### Harden PostgreSQL Config
+
 ```bash
-sudo chmod 600 /etc/netplan/01-netcfg.yaml
-sudo netplan apply
+sudo nano /etc/postgresql/16/main/postgresql.conf
 ```
 
-### 🧪 WLAN-Verbindung testen
+Recommended settings:
+
+```conf
+listen_addresses = 'localhost'
+ssl = on
+log_connections = on
+log_disconnections = on
+```
+
+### Firewall Rules for Local DB Access
+
 ```bash
-iw dev wlp2s0 link                # Verbindungsstatus
-ip route | grep default           # Aktive Schnittstelle
-ping -I wlp2s0 8.8.8.8            # WLAN-Pingtest
+sudo ufw allow from 127.0.0.1 to any port 3306  # MariaDB
+sudo ufw allow from 127.0.0.1 to any port 5432  # PostgreSQL
+```
+
+> **Note:** If Tor listens on `localhost`, do you really want to allow database access over Hidden Services? Only recommended with full auth & ACL.
+
+---
+
+## 3. Python AI Environment
+
+### Virtual Environment
+
+```bash
+python3 -m venv ~/ai-env
+source ~/ai-env/bin/activate
+```
+
+### Install Libraries
+
+```bash
+pip install numpy pandas scikit-learn matplotlib jupyter
+pip install torch torchvision transformers datasets
 ```
 
 ---
 
-## 🔒 5. Grundschutz & Sicherheit
+## 4. Web Management Tools
 
-### 🛠️ System-Härtung
+| Tool    | Installation                                                           | Port |
+| ------- | ---------------------------------------------------------------------- | ---- |
+| Adminer | `wget -O /var/www/html/adminer.php https://www.adminer.org/latest.php` | 80   |
+| Jupyter | `pip install jupyter` (runs inside `~/ai-env`)                         | 8888 |
+
+---
+
+## 5. Performance Optimizations
+
+### Enable Apache Modules
+
 ```bash
-# Dash als /bin/sh deaktivieren (für Kompatibilität)
-sudo dpkg-reconfigure dash
-# Wähle "Nein" bei der Frage nach Standard-System-Shell
-
-# AppArmor deaktivieren (falls nicht benötigt)
-sudo systemctl stop apparmor
-sudo systemctl disable apparmor
-sudo apt purge apparmor apparmor-utils -y
+sudo a2enmod proxy_fcgi setenvif headers expires deflate http2 rewrite ssl
 ```
 
-### 🦠 ClamAV (Virenscanner)
+### Enable PHP-FPM Config
+
 ```bash
-sudo apt install clamav clamav-daemon -y
-sudo systemctl enable clamav-freshclam --now
-sudo freshclam
+sudo a2enconf php8.3-fpm
 ```
 
-### 🕵️ chkrootkit (Rootkit-Erkennung)
-```bash
-sudo apt install chkrootkit -y
-sudo chkrootkit
-```
+### Adjust Opcache Settings
 
-### 🔍 rkhunter (Erweiterte Rootkit-Erkennung)
-```bash
-sudo apt install rkhunter -y
-sudo rkhunter --update
-sudo rkhunter --propupd
-sudo rkhunter --check
-```
-
-### 🛡️ fail2ban (Brute-Force-Schutz)
-```bash
-sudo apt install fail2ban -y
-sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-```
-
-#### Beispielkonfiguration für SSH-Härtung (`/etc/fail2ban/jail.local`):
 ```ini
-[sshd]
-enabled = true
-port = ssh
-filter = sshd
-logpath = /var/log/auth.log
-maxretry = 3
-bantime = 3600
-findtime = 600
-```
-
-#### Konfiguration anwenden:
-```bash
-sudo systemctl restart fail2ban
-```
-
-### 📊 Statuschecks
-```bash
-# Alle Sicherheitsdienste überprüfen
-sudo systemctl status clamav-daemon
-sudo fail2ban-client status
-sudo rkhunter --check --sk
+# /etc/php/8.3/fpm/php.ini
+opcache.memory_consumption=128
+opcache.max_accelerated_files=4000
 ```
 
 ---
 
-## 🎉 Fertigstellung
-Dein X201 ist nun optimiert und abgesichert. Starte das System neu, um alle Änderungen zu aktivieren:
+## 6. Security Configuration & Tor
+
+### Set Up Tor Hidden Service
 
 ```bash
-sudo reboot
+sudo apt install tor
+sudo nano /etc/tor/torrc
 ```
 
+Example configuration:
 
-## 💾 Backup & Restore Script
+```conf
+HiddenServiceDir /var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:80
+```
 
-Um dein System nach frischer Installation schnell und sicher zu sichern, nutze das [Backup & Restore Script](https://github.com/VolkanSah/Debian-System-Backup-and-Restore-Script/).
+> Warning: Never link Hidden Services directly to PostgreSQL/MariaDB without strong authentication!
 
-### Funktionen
-
-* Sichert deine installierten Pakete, Konfigurationsdateien und optional das gesamte Dateisystem (ohne bestimmte Systemordner)
-* Legt Backups in `/backup/YYYYMMDD_HHMMSS` automatisch an
-* Loggt jeden Schritt ins Backup-Verzeichnis
-* Restore stellt Pakete und Konfigurationen wieder her, optional auch das gesamte System
-
-### Nutzung
-
-**Backup erstellen:**
+### Additional Security Packages
 
 ```bash
-sudo /batscripts/backup.sh backup
+sudo apt install fail2ban ufw modsecurity
 ```
 
-Für ein komplettes Full-Backup mit Systemdateien:
+### Optional Tools
 
 ```bash
-sudo /batscripts/backup.sh backup full
+sudo apt install imagemagick redis-server php8.3-redis memcached php8.3-memcached \
+ffmpeg ghostscript webp certbot
 ```
-
-**Backup zurückspielen:**
-
-```bash
-sudo /batscripts/backup.sh restore /backup/20250709_191251
-```
-
-Für kompletten Restore inklusive Dateisystem:
-
-```bash
-sudo /batscripts/backup.sh restore /backup/20250709_191251 full
-```
-
-### Installation & Setup
-
-* Lege das Script z.B. nach `/batscripts/backup.sh`
-* Gib Ausführungsrechte: `sudo chmod +x /batscripts/backup.sh`
-* Optional: Alias anlegen für schnellen Zugriff (z.B. `batbackup`)
-
-### Tipp
-
-Automatisiere regelmäßige Backups mit Cronjobs, um immer eine aktuelle Sicherung parat zu haben.
-
-
 
 ---
 
-## 🔗 Nützliche Links
-- [Ubuntu Server Guide](https://ubuntu.com/server/docs)
-- [ThinkPad Hardware-Support](https://www.thinkwiki.org)
-- [Linux Security Hardening](https://linuxsecurity.com/features)
+## 7. Finalization
+
+```bash
+sudo systemctl restart apache2 mariadb postgresql
+sudo ufw enable
+```
+
+---
+
+## 8. Useful Links
+
+* [Apache Performance Tuning](https://httpd.apache.org/docs/2.4/misc/perf-tuning.html)
+* [PostgreSQL Security Documentation](https://www.postgresql.org/docs/current/security.html)
+* [Tor Project Support](https://support.torproject.org/)
+
+
+**For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
+
+* `cap-1.md` (System optimization & BIOS tuning)
+* `cap-3.md` (Fan & load testing)
+* `cap-4.md` (Wi-Fi configuration & security)
+
+
