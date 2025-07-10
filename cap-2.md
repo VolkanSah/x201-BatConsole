@@ -194,8 +194,15 @@ ffmpeg ghostscript webp certbot
 sudo systemctl restart apache2 mariadb postgresql
 sudo ufw enable
 ```
+```
+sudo ufw default deny incoming      # Alles incoming dichtmachen  
+sudo ufw default allow outgoing     # Outgoing offen lassen (meistens sinnvoll)  
+sudo ufw allow from 192.168.3.0/24 to any port 22  # SSH aus lokalem Netz erlauben  
+sudo ufw allow 80                   # HTTP  
+sudo ufw allow 443                  # HTTPS  
 
----
+```
+
 
 ## 8. Useful Links
 
