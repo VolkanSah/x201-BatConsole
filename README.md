@@ -66,10 +66,8 @@ watch -n 1 "grep 'MHz' /proc/cpuinfo"
 ## 🌀 3. Fan & Stress Testing (optional)
 
 ```bash
-sudo apt install fancontrol pwmconfig stress s-tui
-sudo pwmconfig        # Caution with laptops!
-stress --cpu 4        # Adjust to number of cores
-s-tui                 # Real-time monitoring
+sudo apt install fancontrol stress s-tui
+
 ```
 
 ---
