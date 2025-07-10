@@ -194,7 +194,7 @@ ffmpeg ghostscript webp certbot
 sudo systemctl restart apache2 mariadb postgresql
 sudo ufw enable
 ```
-### **For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
+##### **For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
 - [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
 - [Cap-3: Performance & Resilience Test  (Tor Edition)](cap-3.md)
 - [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
