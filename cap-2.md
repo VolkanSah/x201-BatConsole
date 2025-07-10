@@ -30,14 +30,7 @@ pip install transformers datasets # Hugging Face
 - **Adminer:** `wget https://www.adminer.org/latest.php` nach `/var/www/html/`
 - **Jupyter:** läuft auf Port 8888, perfekt für AI-Experimente
 
-**Apache VirtualHosts Setup:**
-```apache
-# Für deine verschiedenen Projekte
-/var/www/wordpress/
-/var/www/joomla/
-/var/www/prestashop/
-/var/www/own-php/
-```
+
 
 **Performance-Tweaks für X201:**
 ```bash
