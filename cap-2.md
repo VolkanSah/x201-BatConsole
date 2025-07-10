@@ -1,173 +1,147 @@
-# 2. Webserver & Datenbanken
+# 🖥️ x201 – Webserver & Datenbanken Setup
 
-## Inhaltsverzeichnis
-
-1. LAMP + Python Stack
-2. Datenbanken sichern & härten
-3. Python KI-Umgebung
-4. Web Management-Tools
-5. Performance-Tweaks für X201
-6. Fehlende Essentials
-7. Journalisten-CMS + Tor
-8. Apache Performance-Module
-9. CMS-Security
-10. Hinweis zu Tor & Datenbanksicherheit
+## 📋 Inhaltsverzeichnis
+1. [LAMP + Python Stack](#-1-lamp--python-stack)
+2. [Datenbanken sichern & härten](#-2-datenbanken-sichern--härten)
+3. [Python KI-Umgebung](#-3-python-ki-umgebung)
+4. [Web Management-Tools](#-4-web-management-tools)
+5. [Performance-Optimierungen](#-5-performance-optimierungen)
+6. [Sicherheitskonfiguration](#-6-sicherheitskonfiguration)
 
 ---
 
-## 1. LAMP + Python Stack
+## 🛠️ 1. LAMP + Python Stack
 
+### 🌐 Apache & PHP Installation
 ```bash
-# Apache + PHP
 sudo apt install apache2 php8.3 php8.3-fpm libapache2-mod-php8.3
+```
 
-# PHP Extensions
+### 📦 PHP Erweiterungen
+```bash
 sudo apt install php8.3-mysql php8.3-pgsql php8.3-gd php8.3-curl \
 php8.3-zip php8.3-xml php8.3-mbstring php8.3-intl php8.3-bcmath \
 php8.3-imagick php8.3-opcache
+```
 
-# Datenbanken
+### 🗃️ Datenbanken
+```bash
 sudo apt install mariadb-server postgresql postgresql-contrib
+```
 
-# Python für KI/ML
+### 🐍 Python Umgebung
+```bash
 sudo apt install python3.12 python3.12-venv python3-pip
 ```
 
 ---
 
-## 2. Datenbanken sichern & härten
+## 🔒 2. Datenbanken sichern & härten
 
-### MariaDB
-
+### MariaDB Sicherheit
 ```bash
 sudo mysql_secure_installation
 ```
 
-### PostgreSQL
-
+### PostgreSQL Härtung
 ```bash
-# Passwort setzen:
-sudo -u postgres psql
-ALTER USER postgres PASSWORD 'dein_starkes_postgres_password';
-\q
-
-# Auth-Methode anpassen (z. B. Version 16):
+sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'starkes_passwort';"
 sudo nano /etc/postgresql/16/main/pg_hba.conf
-# Ändere:
-local   all   postgres   peer
-# zu:
-local   all   postgres   md5
-
-sudo systemctl restart postgresql
 ```
 
-### PostgreSQL-Konfiguration härten
-
+**Empfohlene Einstellungen:**
 ```conf
-# /etc/postgresql/16/main/postgresql.conf
+# postgresql.conf
 listen_addresses = 'localhost'
 ssl = on
-log_connections = on
-log_disconnections = on
 
-# /etc/postgresql/16/main/pg_hba.conf
+# pg_hba.conf
 local   all   all   md5
 host    all   all   127.0.0.1/32   md5
 ```
 
-### Firewall für lokale DB-Verbindungen
-
+### 🔥 Firewall-Regeln
 ```bash
 sudo ufw allow from 127.0.0.1 to any port 3306  # MariaDB
 sudo ufw allow from 127.0.0.1 to any port 5432  # PostgreSQL
-sudo systemctl restart mariadb postgresql
 ```
 
 ---
 
-## 3. Python KI-Umgebung
+## 🤖 3. Python KI-Umgebung
 
+### Virtuelle Umgebung erstellen
 ```bash
 python3 -m venv ~/ai-env
 source ~/ai-env/bin/activate
+```
 
+### KI-Bibliotheken installieren
+```bash
 pip install numpy pandas scikit-learn matplotlib jupyter
-pip install torch torchvision
-pip install transformers datasets
+pip install torch torchvision transformers datasets
 ```
 
 ---
 
-## 4. Web Management-Tools
+## 🛡️ 4. Web Management-Tools
 
-* **Adminer:** `wget https://www.adminer.org/latest.php` nach `/var/www/html/`
-* **Jupyter:** läuft auf Port 8888
+| Tool | Installationsbefehl | Port |
+|------|---------------------|------|
+| **Adminer** | `wget -O /var/www/html/adminer.php https://www.adminer.org/latest.php` | 80 |
+| **Jupyter** | `pip install jupyter` | 8888 |
 
 ---
 
-## 5. Performance-Tweaks für X201
+## ⚡ 5. Performance-Optimierungen
 
+### Apache Tweaks
 ```bash
-sudo a2enmod proxy_fcgi setenvif
+sudo a2enmod proxy_fcgi setenvif headers expires deflate http2 rewrite ssl
 sudo a2enconf php8.3-fpm
+```
 
-# /etc/php/8.3/fpm/php.ini:
+### PHP OPcache
+```ini
+; /etc/php/8.3/fpm/php.ini
 opcache.memory_consumption=128
 opcache.max_accelerated_files=4000
 ```
 
 ---
 
-## 6. Fehlende Essentials
+## 🔐 6. Sicherheitskonfiguration
 
-```bash
-sudo apt install imagemagick php8.3-imagick
-sudo apt install memcached php8.3-memcached redis-server php8.3-redis
-sudo apt install ffmpeg ghostscript webp
-sudo apt install fail2ban ufw php8.3-apcu
-```
-
----
-
-## 7. Journalisten-CMS + Tor
-
+### Tor Hidden Service
 ```bash
 sudo apt install tor
-
-# /etc/tor/torrc:
-HiddenServiceDir /var/lib/tor/hidden_service/
-HiddenServicePort 80 127.0.0.1:80
-
-sudo apt install certbot  # TLS auch für .onion
-sudo apt install php8.3-sqlite3
+echo "HiddenServiceDir /var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:80" | sudo tee -a /etc/tor/torrc
 ```
 
----
+### Wichtige Sicherheitsregeln:
+1. **Niemals** Datenbanken direkt über Tor freigeben
+2. Immer Firewall für `127.0.0.1` beschränken
+3. Regelmäßige Backups durchführen
 
-## 8. Apache Performance-Module
-
+### Zusätzliche Sicherheitspakete
 ```bash
-sudo a2enmod headers expires deflate http2 rewrite ssl
+sudo apt install fail2ban ufw modsecurity-crs
 ```
 
 ---
 
-## 9. CMS Security Best Practices
+## 🎉 Fertigstellung
+```bash
+sudo systemctl restart apache2 mariadb postgresql
+sudo ufw enable
+```
 
-* ModSecurity WAF
-* Rate Limiting
-* Log-Anonymisierung
-* Datenbankverschlüsselung (at rest)
+> **Hinweis:** Nach der Konfiguration alle Dienste neu starten und die Firewall aktivieren.
 
 ---
 
-## 10. Hinweis: Datenbanken & Tor Hidden Services
-
-**Tor Hidden Services sind sicher**, aber **nie direkt Datenbanken über .onion freigeben!**
-
-* Nur Webserver via `.onion` freigeben
-* Datenbank über `localhost` verwenden
-* Niemals PostgreSQL oder MariaDB als Hidden Service konfigurieren
-* Firewall nur für `127.0.0.1` freigeben
-
-> Mehr dazu siehe Abschnitt "Tor & Datenbanksicherheit"
+## 🔗 Nützliche Links
+- [Apache Performance Tuning](https://httpd.apache.org/docs/2.4/misc/perf-tuning.html)
+- [PostgreSQL Security](https://www.postgresql.org/docs/current/security.html)
+- [Tor Project Documentation](https://support.torproject.org/)
