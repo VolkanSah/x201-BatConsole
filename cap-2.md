@@ -124,10 +124,14 @@ pip install torch torchvision transformers datasets
 
 ## 4. Web Management Tools
 
-| Tool    | Installation                                                           | Port |
-| ------- | ---------------------------------------------------------------------- | ---- |
-| Adminer | `wget -O /var/www/html/adminer.php https://www.adminer.org/latest.php` | 80   |
-| Jupyter | `pip install jupyter` (runs in `~/ai-env`)                             | 8888 |
+## 4. Web Management Tools
+
+| Tool     | Installation                                                             | Port / Context         |
+|----------|--------------------------------------------------------------------------|------------------------|
+| Adminer  | `wget -O /var/www/html/adminer.php https://www.adminer.org/latest.php`   | 80                    |
+| Jupyter  | `pip install jupyter` (runs in `~/ai-env`)                               | 8888                  |
+| Pros     | `use brain.bin`  *(manual launch in your skull directory)*               | shell / Realität       |
+
 
 ---
 
