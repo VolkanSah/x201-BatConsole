@@ -1,7 +1,3 @@
-Klar, hier ist die komplette Übersetzung deiner `cap-2.md` ins Englische, sauber und mit Verweisen auf die anderen Kapitel:
-
----
-
 # x201 – Webserver & Database Setup
 
 ## Table of Contents
