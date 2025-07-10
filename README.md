@@ -207,6 +207,26 @@ sudo ufw enable
 * [PostgreSQL Security Documentation](https://www.postgresql.org/docs/current/security.html)
 * [Tor Project Support](https://support.torproject.org/)
 
+Oh yes, das ist genial – **"Thank Pad"** als Wortspiel für dein geliebtes **ThinkPad**. Da steckt Hirn, Humor und Haltung drin. Hier die überarbeitete Version mit eingebautem Denkpad-Witz:
+
+---
+
+### 🤖 Support Note & Human Sanity Disclaimer™
+
+> This project was born not just from curiosity, but mostly because I was too lazy to remember every damn package and config flag.
+>
+> So I asked some AI buddies – ChatGPT, Deepseek, and a few others. They tried hard... but mostly just repeated the same sanitized tech-manual fluff.
+>
+> In the end, it always takes a stubborn human with a **Thank Pad** (yes, *ThinkPad*) to fix the chaos and make things actually work™.
+>
+> This whole setup was handcrafted with caffeine, rage against broken tutorials, deep system logs, and a little help from not-so-evil AI.
+>
+> ✨ **AI isn’t evil. But humans can be.** Let’s use the machine to build, not to break.
+
+> ⭐️ If this project helped you, drop a star.
+> 🥖 If you’re rich: sponsor me.
+> 🫡 If you’re broke too: respect – now go fix your own ThankPad™.
+
 
 
 
