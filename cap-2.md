@@ -1,4 +1,3 @@
-
 **LAMP + Python Stack:**
 ```bash
 # Apache + PHP
@@ -13,6 +12,41 @@ sudo apt install mariadb-server postgresql postgresql-contrib
 # Python für KI/ML
 sudo apt install python3.12 python3.12-venv python3-pip
 ```
+
+# Datenbanken sichern: 
+Maria Db
+```
+sudo mysql_secure_installation
+```
+Postgree bissel tricky
+
+Passwort setzten:
+```sudo -u postgres psql
+
+# 1. postgres user (= root) starkes Password geben
+ALTER USER postgres PASSWORD 'dein_starkes_postgres_password';
+# Achtung Keine Sonderzeuchen! 
+
+# 2. Raus aus psql
+\q
+```
+exampl for version 16:
+
+```
+sudo nano /etc/postgresql/16/main/pg_hba.conf
+```
+das: 
+```
+local   all             postgres                                peer
+```
+zu das ändern:
+```
+local   all             postgres                                md5
+```
+sudo systemctl restart postgresql
+# Jetzt sollte nach Password gefragt werden
+sudo -u postgres psql
+
 
 **Für Python KI-Libs:**
 ```bash
