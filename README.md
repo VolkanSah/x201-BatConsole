@@ -1,235 +1,280 @@
-# x201 – Webserver & Database Setup
+# 🖥️ x201 – BatConsole Setup & Tuning Guide
 
-## Table of Contents
+What to do with an old Lenovo X201?
+→ Build a whisper-quiet, stable, Wi-Fi-enabled dev/home server! 🦇
 
-1. [LAMP + Python Stack](#1-lamp--python-stack)
-2. [Securing & Hardening Databases](#2-securing--hardening-databases)
-3. [Python AI Environment](#3-python-ai-environment)
-4. [Web Management Tools](#4-web-management-tools)
-5. [Performance Optimizations](#5-performance-optimizations)
-6. [Security Configuration & Tor](#6-security-configuration--tor)
-7. [Finalization](#7-finalization)
-8. [Useful Links](#8-useful-links)
+Why Ubuntu and not Debian? [Read more here](why-ubuntu.md)
 
 ---
 
-## 1. LAMP + Python Stack
+## 📋 Table of Contents
 
-### Apache + PHP
+1. [System Optimization & Cooling](#-1-system-optimization--cooling)
+2. [BIOS Tuning](#-2-bios-tuning)
+3. [Fan & Stress Testing](#-3-fan--stress-testing-optional)
+4. [Wi-Fi Setup](#-4-wi-fi-setup-for-server-mode)
+5. [Basic Security](#-5-basic-protection--security)
+
+---
+
+## ⚙️ 1. System Optimization & Cooling
+
+### 🔋 TLP for Battery & CPU Optimization
 
 ```bash
-sudo apt install apache2 php8.3 php8.3-fpm libapache2-mod-php8.3
+sudo apt install tlp tlp-rdw
+sudo systemctl enable tlp --now
 ```
 
-### PHP Extensions
+### 🧠 Set CPU Governor
 
 ```bash
-sudo apt install php8.3-mysql php8.3-pgsql php8.3-gd php8.3-curl \
-php8.3-zip php8.3-xml php8.3-mbstring php8.3-intl php8.3-bcmath \
-php8.3-imagick php8.3-opcache php8.3-apcu php8.3-sqlite3 \
-php8.3-ldap php8.3-imap php8.3-soap php8.3-xmlrpc php8.3-xsl php8.3-bz2
+sudo apt install cpufrequtils
+echo 'GOVERNOR="powersave"' | sudo tee /etc/default/cpufrequtils
+sudo systemctl restart cpufrequtils
 ```
 
-### Databases
+#### 🔄 Recommended (Permanent)
 
 ```bash
-sudo apt install mariadb-server postgresql postgresql-contrib
+echo 'GOVERNOR="conservative"' | sudo tee /etc/default/cpufrequtils
+sudo systemctl restart cpufrequtils
 ```
 
-### Python (for AI & Backend)
+### 🌡️ Monitor Temperatures
 
 ```bash
-sudo apt install python3.12 python3.12-venv python3-pip
+sudo apt install lm-sensors
+sudo sensors-detect
+watch -n 1 "sensors && cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
+```
+
+#### 📊 Display CPU Frequency
+
+```bash
+watch -n 1 "grep 'MHz' /proc/cpuinfo"
 ```
 
 ---
 
-## 2. Securing & Hardening Databases
+## 🧬 2. BIOS Tuning
 
-### Secure MariaDB
+* ✅ Enable **Hyper-Threading**
+* ❌ Disable **Intel Turbo Boost** (if overheating)
+* 🔧 Set fan control to **Performance** (if available)
 
-```bash
-sudo mysql_secure_installation
-```
+---
 
-### Set PostgreSQL Password
-
-```bash
-sudo -u postgres psql
-ALTER USER postgres PASSWORD 'your_strong_password';
-\q
-```
-
-### Change Authentication Method (Example for Version 16)
+## 🌀 3. Fan & Stress Testing (optional)
 
 ```bash
-sudo nano /etc/postgresql/16/main/pg_hba.conf
+sudo apt install fancontrol pwmconfig stress s-tui
+sudo pwmconfig        # Caution with laptops!
+stress --cpu 4        # Adjust to number of cores
+s-tui                 # Real-time monitoring
 ```
 
-Change this line:
+---
+
+## 📶 4. Wi-Fi Setup for Server Mode
+
+### 📂 WPA Configuration (`/etc/wpa_supplicant/wpa_supplicant.conf`)
 
 ```conf
-local   all   postgres   peer
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+
+network={
+    ssid="YourNetworkName"
+    psk="YourPassword"
+    key_mgmt=WPA-PSK
+}
 ```
 
-to:
+### 🌐 Netplan Configuration (`/etc/netplan/01-netcfg.yaml`)
 
-```conf
-local   all   postgres   md5
+```yaml
+network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlp2s0:
+      dhcp4: true
+      access-points:
+        "YourNetworkName":
+          password: "YourPassword"
 ```
 
-### Harden PostgreSQL Config
+#### 🔒 Set Permissions & Apply
 
 ```bash
-sudo nano /etc/postgresql/16/main/postgresql.conf
+sudo chmod 600 /etc/netplan/01-netcfg.yaml
+sudo netplan apply
 ```
 
-Recommended settings:
-
-```conf
-listen_addresses = 'localhost'
-ssl = on
-log_connections = on
-log_disconnections = on
-```
-
-### Firewall Rules for Local DB Access
+### 🧪 Test Wi-Fi
 
 ```bash
-sudo ufw allow from 127.0.0.1 to any port 3306  # MariaDB
-sudo ufw allow from 127.0.0.1 to any port 5432  # PostgreSQL
-```
-
-> **Note:** If Tor listens on `localhost`, do you really want to allow database access over Hidden Services? Only recommended with full auth & ACL.
-
----
-
-## 3. Python AI Environment
-
-### Virtual Environment
-
-```bash
-python3 -m venv ~/ai-env
-source ~/ai-env/bin/activate
-```
-
-### Install Libraries
-
-```bash
-pip install numpy pandas scikit-learn matplotlib jupyter
-pip install torch torchvision transformers datasets
+iw dev wlp2s0 link                # Connection status
+ip route | grep default           # Active interface
+ping -I wlp2s0 8.8.8.8            # Ping test via Wi-Fi
 ```
 
 ---
 
-## 4. Web Management Tools
+## 🔒 5. Basic Protection & Security
 
-| Tool    | Installation                                                           | Port |
-| ------- | ---------------------------------------------------------------------- | ---- |
-| Adminer | `wget -O /var/www/html/adminer.php https://www.adminer.org/latest.php` | 80   |
-| Jupyter | `pip install jupyter` (runs inside `~/ai-env`)                         | 8888 |
-
----
-
-## 5. Performance Optimizations
-
-### Enable Apache Modules
+### 🛠️ Harden the System
 
 ```bash
-sudo a2enmod proxy_fcgi setenvif headers expires deflate http2 rewrite ssl
+# Disable Dash as /bin/sh (for compatibility)
+sudo dpkg-reconfigure dash
+# Choose “No” when asked for default system shell
+
+# Disable AppArmor (if not needed)
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+sudo apt purge apparmor apparmor-utils -y
 ```
 
-### Enable PHP-FPM Config
+### 🦠 ClamAV (Antivirus)
 
 ```bash
-sudo a2enconf php8.3-fpm
+sudo apt install clamav clamav-daemon -y
+sudo systemctl enable clamav-freshclam --now
+sudo freshclam
 ```
 
-### Adjust Opcache Settings
+### 🕵️ chkrootkit (Rootkit Detection)
+
+```bash
+sudo apt install chkrootkit -y
+sudo chkrootkit
+```
+
+### 🔍 rkhunter (Advanced Rootkit Detection)
+
+```bash
+sudo apt install rkhunter -y
+sudo rkhunter --update
+sudo rkhunter --propupd
+sudo rkhunter --check
+```
+
+### 🛡️ fail2ban (Brute-Force Protection)
+
+```bash
+sudo apt install fail2ban -y
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+```
+
+#### Example SSH Protection (`/etc/fail2ban/jail.local`):
 
 ```ini
-# /etc/php/8.3/fpm/php.ini
-opcache.memory_consumption=128
-opcache.max_accelerated_files=4000
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 3600
+findtime = 600
+```
+
+#### Apply Config
+
+```bash
+sudo systemctl restart fail2ban
+```
+
+### 📊 Check Security Services
+
+```bash
+# Check status of all protection tools
+sudo systemctl status clamav-daemon
+sudo fail2ban-client status
+sudo rkhunter --check --sk
 ```
 
 ---
 
-## 6. Security Configuration & Tor
+## 🎉 Final Step
 
-### Set Up Tor Hidden Service
-
-```bash
-sudo apt install tor
-sudo nano /etc/tor/torrc
-```
-
-Example configuration:
-
-```conf
-HiddenServiceDir /var/lib/tor/hidden_service/
-HiddenServicePort 80 127.0.0.1:80
-```
-
-> Warning: Never link Hidden Services directly to PostgreSQL/MariaDB without strong authentication!
-
-### Additional Security Packages
+Your X201 is now optimized and secured. Reboot the system to apply all changes:
 
 ```bash
-sudo apt install fail2ban ufw modsecurity
-```
-
-### Optional Tools
-
-```bash
-sudo apt install imagemagick redis-server php8.3-redis memcached php8.3-memcached \
-ffmpeg ghostscript webp certbot
+sudo reboot
 ```
 
 ---
 
-## 7. Finalization
+## 💾 Backup & Restore Script
+
+To quickly and securely back up your system after a fresh setup, use the [Backup & Restore Script](https://github.com/VolkanSah/Debian-System-Backup-and-Restore-Script/).
+
+### Features
+
+* Saves installed packages, config files, and optionally the full file system (excluding core system dirs)
+* Stores backups in `/backup/YYYYMMDD_HHMMSS` automatically
+* Logs every step into the backup folder
+* Restores packages, configs, and optionally full system structure
+
+### Usage
+
+**Create a backup:**
 
 ```bash
-sudo systemctl restart apache2 mariadb postgresql
-sudo ufw enable
+sudo /batscripts/backup.sh backup
 ```
+
+For full system backup:
+
+```bash
+sudo /batscripts/backup.sh backup full
+```
+
+**Restore a backup:**
+
+```bash
+sudo /batscripts/backup.sh restore /backup/20250709_191251
+```
+
+Full restore including files:
+
+```bash
+sudo /batscripts/backup.sh restore /backup/20250709_191251 full
+```
+
+### Setup
+
+* Place the script under e.g. `/batscripts/backup.sh`
+* Grant execution: `sudo chmod +x /batscripts/backup.sh`
+* Optional: Add an alias like `batbackup`
+
+### Pro Tip
+
+Use a cronjob for automatic backups and stay safe at all times.
+
+---
+
 ##### **For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
-- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
-- [Cap-3: Performance & Resilience Test  (Tor Edition)](cap-3.md)
-- [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
+
+* [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
+* [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
+* [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
 
 ---
 
-## 8. Useful Links
-
-* [Apache Performance Tuning](https://httpd.apache.org/docs/2.4/misc/perf-tuning.html)
-* [PostgreSQL Security Documentation](https://www.postgresql.org/docs/current/security.html)
-* [Tor Project Support](https://support.torproject.org/)
-
-Oh yes, das ist genial – **"Thank Pad"** als Wortspiel für dein geliebtes **ThinkPad**. Da steckt Hirn, Humor und Haltung drin. Hier die überarbeitete Version mit eingebautem Denkpad-Witz:
-
----
-
-### 🤖 Support Note & Human Sanity Disclaimer™
+## 🤖 Support Note & Human Sanity Disclaimer™
 
 > This project was born not just from curiosity, but mostly because I was too lazy to remember every damn package and config flag.
->
 > So I asked some AI buddies – ChatGPT, Deepseek, and a few others. They tried hard... but mostly just repeated the same sanitized tech-manual fluff.
->
 > In the end, it always takes a stubborn human with a **Thank Pad** (yes, *ThinkPad*) to fix the chaos and make things actually work™.
 >
 > This whole setup was handcrafted with caffeine, rage against broken tutorials, deep system logs, and a little help from not-so-evil AI.
 >
 > ✨ **AI isn’t evil. But humans can be.** Let’s use the machine to build, not to break.
-> 
 > ⭐️ If this project helped you, drop a star.
-> 
 > 🥖 If you’re rich: sponsor me.
-> 
 > 🫡 If you’re broke too: respect – now go fix your own ThankPad™.
-
-
-
-
-
