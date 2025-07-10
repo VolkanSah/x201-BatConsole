@@ -187,14 +187,7 @@ findtime = 600
 sudo systemctl restart fail2ban
 ```
 
-### 📊 Check Security Services
 
-```bash
-# Check status of all protection tools
-sudo systemctl status clamav-daemon
-sudo fail2ban-client status
-sudo rkhunter --check --sk
-```
 
 
 
