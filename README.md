@@ -198,7 +198,7 @@ ffmpeg ghostscript webp certbot
 sudo systemctl restart apache2 mariadb postgresql
 sudo ufw enable
 ```
-### Next steps:
+### **For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
 - [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
 - [Cap-3: Performance & Resilience Test  (Tor Edition)](cap-3.md)
 - [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
@@ -212,10 +212,6 @@ sudo ufw enable
 * [Tor Project Support](https://support.torproject.org/)
 
 
-**For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
 
-* `cap-1.md` (System optimization & BIOS tuning)
-* `cap-3.md` (Fan & load testing)
-* `cap-4.md` (Wi-Fi configuration & security)
 
 
