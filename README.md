@@ -5,8 +5,6 @@ What to do with an old Lenovo X201?
 
 Why Ubuntu and not Debian? [Read more here](why-ubuntu.md)
 
----
-
 ## 📋 Table of Contents
 
 1. [System Optimization & Cooling](#-1-system-optimization--cooling)
@@ -15,7 +13,7 @@ Why Ubuntu and not Debian? [Read more here](why-ubuntu.md)
 4. [Wi-Fi Setup](#-4-wi-fi-setup-for-server-mode)
 5. [Basic Security](#-5-basic-protection--security)
 
----
+
 
 ## ⚙️ 1. System Optimization & Cooling
 
@@ -197,7 +195,7 @@ sudo fail2ban-client status
 sudo rkhunter --check --sk
 ```
 
----
+
 
 ## 🎉 Final Step
 
@@ -207,7 +205,7 @@ Your X201 is now optimized and secured. Reboot the system to apply all changes:
 sudo reboot
 ```
 
----
+
 
 ## 💾 Backup & Restore Script
 
