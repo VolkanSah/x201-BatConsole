@@ -135,6 +135,7 @@ sudo systemctl stop apparmor
 sudo systemctl disable apparmor
 sudo apt purge apparmor apparmor-utils -y
 ```
+Update your etc/sysctl.conf like this [etc/sysctl.conf](etc/sysctl.conf)
 
 ### 🦠 ClamAV (Antivirus)
 
