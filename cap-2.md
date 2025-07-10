@@ -47,6 +47,22 @@ sudo systemctl restart postgresql
 # Jetzt sollte nach Password gefragt werden
 sudo -u postgres psql
 
+# PostgreSQL Config härten: z.b. version 16
+
+```
+# /etc/postgresql/16/main/postgresql.conf
+listen_addresses = 'localhost'
+ssl = on
+log_connections = on
+log_disconnections = on
+
+# /etc/postgresql/15/main/pg_hba.conf
+# local connections nur mit password
+local   all             all                                     md5
+host    all             all             127.0.0.1/32            md5
+
+
+```
 
 **Für Python KI-Libs:**
 ```bash
