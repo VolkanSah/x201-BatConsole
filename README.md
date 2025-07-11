@@ -14,8 +14,6 @@ Turn it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server — becau
 
 # Table of Contents
 
-# Table of Contents
-
 - [1. System Optimization & Cooling](#️-1-system-optimization--cooling)
   - [TLP for Battery & CPU Optimization](#tlp-for-battery--cpu-optimization)
   - [Set CPU Governor](#set-cpu-governor)
