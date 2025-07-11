@@ -259,6 +259,7 @@ Use a cronjob for automatic backups and stay safe at all times.
 * [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
 * [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
 
+---
 
 ## 🤖 Support Note & Human Sanity Disclaimer™
 
@@ -275,3 +276,24 @@ Use a cronjob for automatic backups and stay safe at all times.
 > 🥖 If you’re rich: sponsor me.
 > 
 > 🫡 If you’re broke too: respect – now go fix your own ThankPad™.
+
+## Support
+
+If this helped you:
+
+* ⭐ the repo
+* Share it
+* Visit [Volkan Sah](https://github.com/volkansah)
+* [Support via GitHub Sponsors](https://github.com/sponsors/volkansah)
+
+---
+
+## License
+
+MIT License — see LICENSE file.
+
+---
+
+**Credits:** 
+- Mr.Chess alias Volan Sah
+- Readme.md Powered by Batman’s grind and ChatGPT wizardry. 🦇🔥
