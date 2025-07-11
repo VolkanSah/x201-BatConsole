@@ -9,17 +9,17 @@ This guide provides **paranoid-level security checks** designed for legacy syste
 
 ## 📦 Contents
 
-- [System Hardening Verification](#system-hardening-verification)
-- [Tor Security Audit](#tor-security-audit)
-- [Network Security Analysis](#network-security-analysis)
-- [File System Security](#file-system-security)
-- [Process & Service Audit](#process--service-audit)
-- [Memory & Kernel Security](#memory--kernel-security)
-- [User & Permission Audit](#user--permission-audit)
-- [Forensic Footprint Analysis](#forensic-footprint-analysis)
-- [Anonymity Leak Detection](#anonymity-leak-detection)
-- [Emergency Lockdown Checks](#emergency-lockdown-checks)
-- [Credits](#credits)
+- [System Hardening Verification](#-system-hardening-verification)
+- [Tor Security Audit](#-tor-security-audit)
+- [Network Security Analysis](#-network-security-analysis)
+- [File System Security](#-file-system-security)
+- [Process & Service Audit](#p-rocess--service-audit)
+- [Memory & Kernel Security](#-memory--kernel-security)
+- [User & Permission Audit](#-user--permission-audit)
+- [Forensic Footprint Analysis](#-forensic-footprint-analysis)
+- [Anonymity Leak Detection](#-anonymity-leak-detection)
+- [Emergency Lockdown Checks](#-emergency-lockdown-checks)
+- [Credits](#-credits)
 
 ---
 
