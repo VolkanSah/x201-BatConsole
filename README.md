@@ -40,7 +40,13 @@ Turn it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server — becau
   - [Features](#features)
   - [Usage](#usage)
   - [Setup](#setup)
-  - [Pro Tip](#pro-tip)
+
+##### **For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
+
+* [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
+* [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
+* [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
+
 - [Support Note & Human Sanity Disclaimer™](#-support-note--human-sanity-disclaimer)
 - [Support](#support)
 - [License](#license)
@@ -279,11 +285,7 @@ Use a cronjob for automatic backups and stay safe at all times.
 
 
 
-##### **For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
 
-* [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
-* [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
-* [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
 
 ---
 
