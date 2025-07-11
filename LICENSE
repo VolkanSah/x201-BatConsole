@@ -1,0 +1,85 @@
+# 🦇 BatLicense (DBAD Edition) v1.0
+> Hybrid license for ethical hackers, builders, and responsible humans
+
+---
+
+## 📜 Core License
+**This project is licensed under the [Don't Be a Dick Public License](https://github.com/philsturgeon/dbad)**  
+with additional terms below. By using this software, you agree:
+- Not to be a dick
+- To follow Batman's rules
+
+---
+
+## 🚫 Batman's Additional Terms  
+*(What "Being a Dick" Specifically Includes for This Repository)*
+
+### 1. NO IMPERSONATION  
+Don't fork, copy, or modify this work to imply it's official, original, or affiliated with the author.  
+→ *"You're not Batman. Stop pretending."*
+
+### 2. NO COMMERCIAL EXPLOITATION  
+Don't sell this repository's content (code/docs/guides) as:  
+- Paid eBooks/courses  
+- Subscription-based "unmodified" SaaS  
+- Repackaged products without significant original work  
+→ *"Build your own Batcave – don't resell mine."*
+
+### 3. NO HARM OR DECEPTION  
+Don't use this work for:  
+- Malicious attacks or unauthorized intrusion  
+- Hate speech, harassment, or discrimination  
+- Fraud, scams, or political manipulation  
+- Spreading technical misinformation  
+→ *"With great tech comes great responsibility."*
+
+### 4. ATTRIBUTION REQUIREMENT  
+Forks/derivatives must:  
+- Clearly link to the [original repository](https://github.com/your/repo)  
+- State "Based on [Project Name] by [Your Name]"  
+→ *"Give credit where it's due, Robin."*
+
+---
+
+## ✅ Explicitly Permitted (Non-Dick Behavior)
+- **Commercial services** using this code (SaaS/APIs/products)  
+- **Forking and modifying** for learning/improvement  
+- **Security research** with responsible disclosure  
+- **Personal/commercial projects** adding original value  
+
+---
+
+## 🦇 Batman's Spirit Clause
+> This license is a social contract first.  
+> If you use this work to:  
+> - Help others learn  
+> - Build safer systems  
+> - Make technology more human  
+> ...you're being Batman.  
+>  
+> If you exploit, plagiarize, or harm with it,  
+> you're just another Gotham villain.
+
+---
+
+## ⚖️ Legal Structure
+1. **Base License:** [DBAD v1.1](https://github.com/philsturgeon/dbad)  
+2. **Additional Terms:** These Batman rules extend the DBAD definition of "dick behavior"  
+3. **Precedence:** Batman terms prevail where DBAD is ambiguous about this project  
+
+---
+
+## 🧩 How to Comply
+- **For code files:** Add header:  
+  `# Licensed under DBAD + BatLicense (see repository)`  
+- **For derivatives:** Include `LICENSE.dbad` + `BATTERMS.md` files  
+- **For commercial use doubts:** [Contact author](mailto:you@example.com)  
+
+---
+
+> **Disclaimer:** This license inherits DBAD's legal enforceability.  
+> Batman terms reflect community expectations. If sued for violation,  
+> you pay legal fees + 3x coffee donations ☕☕☕  
+>  
+> **Stay curious. Build wisely. Don't be a dick.**  
+> — [Your Name] & [Your GitHub Handle]  
