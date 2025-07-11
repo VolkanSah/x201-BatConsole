@@ -93,16 +93,78 @@ log_connections = on
 log_disconnections = on
 ```
 
-### Firewall Rules for Local DB Usage
+###  Basic Firewall Rules (UFW) for Local & Secure Server Setups
+
+We use **UFW** (Uncomplicated Firewall) for easy rule management.
+
+### ✳️ Recommended Defaults
 
 ```bash
-sudo ufw allow from 127.0.0.1 to any port 3306  # MariaDB
-sudo ufw allow from 127.0.0.1 to any port 5432  # PostgreSQL
+# Deny all incoming by default (sane baseline)
+sudo ufw default deny incoming
+
+# Allow all outgoing connections
+sudo ufw default allow outgoing
 ```
 
-> **Ask yourself:** If Tor listens on `localhost` – do you really want to allow DB access via hidden services? Only recommended for dedicated setups with full Auth & ACL.
+---
+
+### 🖧 Allow Secure Local Network Access
+
+```bash
+# Allow SSH from trusted internal network (adjust subnet as needed)
+sudo ufw allow from 192.168.3.0/24 to any port 22 comment 'SSH from LAN'
+```
+
+> ⚠️ Never open SSH to the world unless absolutely required and properly hardened!
 
 ---
+
+### 🌐 Web Server Rules
+
+```bash
+# Allow standard HTTP/HTTPS traffic
+sudo ufw allow 80 comment 'HTTP'
+sudo ufw allow 443 comment 'HTTPS'
+```
+
+---
+
+### 🗄️ Database Access — Local Only
+
+```bash
+# MariaDB (MySQL) on localhost only
+sudo ufw allow from 127.0.0.1 to any port 3306 comment 'Local MariaDB access only'
+
+# PostgreSQL on localhost only
+sudo ufw allow from 127.0.0.1 to any port 5432 comment 'Local PostgreSQL access only'
+```
+
+> 🛑 **Important:** Never expose database ports publicly unless you:
+>
+> * Use strong authentication
+> * Enforce ACL/IP whitelisting
+> * Understand the risk of network-level DB enumeration
+
+If you're routing through **Tor hidden services** and plan to expose database ports via `.onion`, **reconsider**. It's only recommended for advanced use cases with:
+
+* Secure tunnels
+* Strong credentials
+* Encrypted transport (SSL/TLS or similar)
+
+---
+
+### 🔁 Restart Services & Apply Rules
+
+```bash
+# Restart relevant services
+sudo systemctl restart apache2 mariadb postgresql
+
+# Enable firewall
+sudo ufw enable
+```
+
+
 
 ## 3. Python AI Environment
 
@@ -192,20 +254,7 @@ ffmpeg ghostscript webp certbot
 
 ---
 
-## 7. Finalization
 
-```bash
-sudo systemctl restart apache2 mariadb postgresql
-sudo ufw enable
-```
-```
-sudo ufw default deny incoming      # Alles incoming dichtmachen  
-sudo ufw default allow outgoing     # Outgoing offen lassen (meistens sinnvoll)  
-sudo ufw allow from 192.168.3.0/24 to any port 22  # SSH aus lokalem Netz erlauben  
-sudo ufw allow 80                   # HTTP  
-sudo ufw allow 443                  # HTTPS  
-
-```
 
 
 ## 8. Useful Links
