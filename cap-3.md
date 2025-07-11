@@ -125,13 +125,92 @@ systemd-analyze blame
 
 > Great for identifying startup bottlenecks on older hardware.
 
+## 🔌 Hardware Health Checks
+
+### USB & Ports
+```bash
+# USB devices und deren Power draw
+lsusb -t
+cat /sys/kernel/debug/usb/devices | grep -E "(Product|Manufacturer|MaxPower)"
+```
+
+### Memory Stress Test (ohne Installation)
+```bash
+# RAM mit /dev/urandom füllen (vorsichtig!)
+stress-ng --vm 1 --vm-bytes 75% --timeout 30s
+# Falls stress-ng fehlt:
+dd if=/dev/urandom of=/dev/null bs=1M count=1024 & 
+```
+
+## ⚡ Power & Thermals Erweitert
+
+### CPU Frequency Monitoring
+```bash
+# CPU scaling governor check
+cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+# Real-time CPU freq
+watch -n 1 "cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq"
+```
+
+### Fan Control (X201 specific)
+```bash
+# ThinkPad fan status
+cat /proc/acpi/ibm/fan
+# Thermal throttling check
+dmesg | grep -i "thermal\|throttl"
+```
+
+## 🔧 I/O & Storage Deep Dive
+
+### Disk I/O unter Last
+```bash
+# Random I/O test
+dd if=/dev/urandom of=~/random_test bs=4K count=10000 oflag=direct
+# Latency test
+time sync
+```
+
+### File System Health
+```bash
+# Inode usage
+df -i
+# Mount options check
+mount | grep -E "(ext4|ntfs|fat)"
+```
+
+## 🖥️ Display & Graphics (für X201)
+```bash
+# GPU info (Intel GMA)
+lspci | grep VGA
+cat /sys/class/drm/card0/device/power_state
+# Screen brightness range
+cat /sys/class/backlight/*/max_brightness
+```
+
+## 🔊 Audio Hardware
+```bash
+# Audio devices
+cat /proc/asound/cards
+# Volume levels
+amixer sget Master
+```
+
+## ⌨️ Input Devices
+```bash
+# Keyboard/Trackpad events
+cat /proc/bus/input/devices | grep -A 5 -B 5 "keyboard\|mouse"
+# X201 TrackPoint check
+xinput list | grep -i track
+```
+
+
 ---
 
 ## 🙌 Credits
 
 This diagnostic chapter was co-developed with ❤️ by
 **S. Volkan Kücükbudak (aka Batman)** and
-**ChatGPT (a slightly overclocked T-Rex)** —
+**ChatGPT & Claude (a slightly overclocked T-Rex)** —
 inspired by a stubborn ThinkPad X201 that refuses to die.
 
 **Mission:** Build tools for the good, open-source for the right reasons, and make the world just a bit harder to control by the wrong people.
