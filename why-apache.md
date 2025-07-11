@@ -1,6 +1,5 @@
 # Apache vs Nginx – Real Talk for Dynamic Web Applications
 
-## TL;DR
 
 Nginx is a great choice for static files and as a reverse proxy.  
 But when it comes to dynamic applications (PHP, Python, etc.), Apache still has key advantages: direct integration, better modular control, and unmatched flexibility.
@@ -140,7 +139,7 @@ ab -n 10000 -c 100 http://localhost/dynamic.php
 * Spinning HDDs
   → Nginx had the edge
 
-**2024:**
+**2025:**
 
 * 32GB+ RAM
 * NVMe SSDs
@@ -165,10 +164,12 @@ ab -n 10000 -c 100 http://localhost/dynamic.php
 ## Apache Configuration – Modern and Efficient
 
 ```apache
+# Before
 ServerLimit 16
 MaxRequestWorkers 400
 ThreadsPerChild 25
 
+# now
 <IfModule mod_php.c>
     php_admin_value memory_limit 256M
     php_admin_value opcache.enable 1
@@ -176,7 +177,7 @@ ThreadsPerChild 25
 </IfModule>
 ```
 
-> Apache in 2024 isn’t bloated – it’s streamlined and ready to scale.
+> Apache in 2025 isn’t bloated – it’s streamlined and ready to scale.
 
 
 
