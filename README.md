@@ -1,5 +1,5 @@
 # 🖥️ x201 – BatConsole Setup & Tuning Guide
-## 🦇 What to do with an old Lenovo X201?
+##  What to do with an old Lenovo X201?
 
 Turn it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server — because heroes *don’t* let hardware rot in drawers.
 
@@ -24,14 +24,14 @@ Turn it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server — becau
 
 ## ⚙️ 1. System Optimization & Cooling
 
-### 🔋 TLP for Battery & CPU Optimization
+### TLP for Battery & CPU Optimization
 
 ```bash
 sudo apt install tlp tlp-rdw
 sudo systemctl enable tlp --now
 ```
 
-### 🧠 Set CPU Governor
+###  Set CPU Governor
 
 ```bash
 sudo apt install cpufrequtils
@@ -39,14 +39,14 @@ echo 'GOVERNOR="powersave"' | sudo tee /etc/default/cpufrequtils
 sudo systemctl restart cpufrequtils
 ```
 
-#### 🔄 Recommended (Permanent)
+####  Recommended (Permanent)
 
 ```bash
 echo 'GOVERNOR="conservative"' | sudo tee /etc/default/cpufrequtils
 sudo systemctl restart cpufrequtils
 ```
 
-### 🌡️ Monitor Temperatures
+###  Monitor Temperatures
 
 ```bash
 sudo apt install lm-sensors
@@ -54,7 +54,7 @@ sudo sensors-detect
 watch -n 1 "sensors && cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
 ```
 
-#### 📊 Display CPU Frequency
+####  Display CPU Frequency
 
 ```bash
 watch -n 1 "grep 'MHz' /proc/cpuinfo"
@@ -70,16 +70,16 @@ watch -n 1 "grep 'MHz' /proc/cpuinfo"
 
 
 
-## 🌀 3. Fan & Stress Testing (optional)
+##  3. Fan & Stress Testing (optional)
 
 ```bash
 sudo apt install fancontrol stress s-tui
 ```
 
 
-## 📶 4. Wi-Fi Setup for Server Mode
+## 📶 4. Wi-Fi Setup for Server Mode (2 options)
 
-### 📂 WPA Configuration (`/etc/wpa_supplicant/wpa_supplicant.conf`)
+###  WPA Configuration (`/etc/wpa_supplicant/wpa_supplicant.conf`)
 
 ```conf
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -93,7 +93,7 @@ network={
 }
 ```
 
-### 🌐 Netplan Configuration (`/etc/netplan/01-netcfg.yaml`)
+###  Netplan Configuration (`/etc/netplan/01-netcfg.yaml`)
 
 ```yaml
 network:
@@ -114,7 +114,7 @@ sudo chmod 600 /etc/netplan/01-netcfg.yaml
 sudo netplan apply
 ```
 
-### 🧪 Test Wi-Fi
+### Test Wi-Fi
 
 ```bash
 iw dev wlp2s0 link                # Connection status
@@ -126,7 +126,7 @@ ping -I wlp2s0 8.8.8.8            # Ping test via Wi-Fi
 
 ## 🔒 5. Basic Protection & Security
 
-### 🛠️ Harden the System
+###  Harden the System
 
 ```bash
 # Disable Dash as /bin/sh (for compatibility)
@@ -140,7 +140,7 @@ sudo apt purge apparmor apparmor-utils -y
 ```
 Update your etc/sysctl.conf like this [etc/sysctl.conf](etc/sysctl.conf)
 
-### 🦠 ClamAV (Antivirus)
+### ClamAV (Antivirus)
 
 ```bash
 sudo apt install clamav clamav-daemon -y
@@ -148,14 +148,14 @@ sudo systemctl enable clamav-freshclam --now
 sudo freshclam
 ```
 
-### 🕵️ chkrootkit (Rootkit Detection)
+###  chkrootkit (Rootkit Detection)
 
 ```bash
 sudo apt install chkrootkit -y
 sudo chkrootkit
 ```
 
-### 🔍 rkhunter (Advanced Rootkit Detection)
+###  rkhunter (Advanced Rootkit Detection)
 
 ```bash
 sudo apt install rkhunter -y
@@ -164,7 +164,7 @@ sudo rkhunter --propupd
 sudo rkhunter --check
 ```
 
-### 🛡️ fail2ban (Brute-Force Protection)
+###  fail2ban (Brute-Force Protection)
 
 ```bash
 sudo apt install fail2ban -y
