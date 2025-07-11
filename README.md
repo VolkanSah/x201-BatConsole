@@ -269,6 +269,9 @@ Use a cronjob for automatic backups and stay safe at all times.
 > This whole setup was handcrafted with caffeine, rage against broken tutorials, deep system logs, and a little help from not-so-evil AI.
 >
 > ✨ **AI isn’t evil. But humans can be.** Let’s use the machine to build, not to break.
+> 
 > ⭐️ If this project helped you, drop a star.
+> 
 > 🥖 If you’re rich: sponsor me.
+> 
 > 🫡 If you’re broke too: respect – now go fix your own ThankPad™.
