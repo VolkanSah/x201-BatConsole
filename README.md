@@ -11,10 +11,6 @@ Turn it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server — becau
 > Curious why we use Ubuntu instead of Debian?
 > 👉 [Read more here](why-ubuntu.md)
 
----
-
-Wenn du magst, kann ich dir auch noch eine nerdige ASCII-Bat-Überschrift basteln oder das Ganze in eine `README.md` gießen. Sag einfach Bescheid! 🦇📦
-
 
 ## 📋 Table of Contents
 
@@ -64,7 +60,7 @@ watch -n 1 "sensors && cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 watch -n 1 "grep 'MHz' /proc/cpuinfo"
 ```
 
----
+
 
 ## 🧬 2. BIOS Tuning
 
@@ -72,16 +68,14 @@ watch -n 1 "grep 'MHz' /proc/cpuinfo"
 * ❌ Disable **Intel Turbo Boost** (if overheating)
 * 🔧 Set fan control to **Performance** (if available)
 
----
+
 
 ## 🌀 3. Fan & Stress Testing (optional)
 
 ```bash
 sudo apt install fancontrol stress s-tui
-
 ```
 
----
 
 ## 📶 4. Wi-Fi Setup for Server Mode
 
@@ -128,7 +122,7 @@ ip route | grep default           # Active interface
 ping -I wlp2s0 8.8.8.8            # Ping test via Wi-Fi
 ```
 
----
+
 
 ## 🔒 5. Basic Protection & Security
 
@@ -257,7 +251,7 @@ sudo /batscripts/backup.sh restore /backup/20250709_191251 full
 
 Use a cronjob for automatic backups and stay safe at all times.
 
----
+
 
 ##### **For more on system tuning, BIOS settings, fan control, and other hardware specifics, check out:**
 
@@ -265,7 +259,6 @@ Use a cronjob for automatic backups and stay safe at all times.
 * [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
 * [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
 
----
 
 ## 🤖 Support Note & Human Sanity Disclaimer™
 
