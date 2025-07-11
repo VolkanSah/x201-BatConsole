@@ -42,7 +42,7 @@ Turn it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server — becau
   - [Setup](#setup)
 - [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
 - [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
-- [Cap-4: Performance & Resilience Test (Tor Edition)](cap-3.md)
+- [Cap-4: Security Audit Suite for Tor Edition Systems](cap-3.md)
 - [Ubuntu vs Debian for a System like Lenovo X201 (Server)](why-ubuntu.md)
 - [Support Note & Human Sanity Disclaimer™](#-support-note--human-sanity-disclaimer)
 - [Support](#support)
