@@ -12,13 +12,66 @@ Turn it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server — becau
 > 👉 [Read more here](why-ubuntu.md)
 
 
-## 📋 Table of Contents
+# Table of Contents
 
-1. [System Optimization & Cooling](#-1-system-optimization--cooling)
-2. [BIOS Tuning](#-2-bios-tuning)
-3. [Fan & Stress Testing](#-3-fan--stress-testing-optional)
-4. [Wi-Fi Setup](#-4-wi-fi-setup-for-server-mode)
-5. [Basic Security](#-5-basic-protection--security)
+1. [System Optimization & Cooling](#-1-system-optimization--cooling)  
+   1.1 [TLP for Battery & CPU Optimization](#tlp-for-battery--cpu-optimization)  
+   1.2 [Set CPU Governor](#set-cpu-governor)  
+   1.3 [Recommended (Permanent)](#recommended-permanent)  
+   1.4 [Monitor Temperatures](#monitor-temperatures)  
+   1.5 [Display CPU Frequency](#display-cpu-frequency)
+
+2. [BIOS Tuning](#-2-bios-tuning)  
+   2.1 [Enable Hyper-Threading](#enable-hyper-threading)  
+   2.2 [Disable Intel Turbo Boost](#disable-intel-turbo-boost)  
+   2.3 [Set Fan Control to Performance](#set-fan-control-to-performance)
+
+3. [Fan & Stress Testing (optional)](#-3-fan--stress-testing-optional)
+
+4. [Wi-Fi Setup for Server Mode (2 options)](#-4-wi-fi-setup-for-server-mode-2-options)  
+   4.1 [WPA Configuration (`/etc/wpa_supplicant/wpa_supplicant.conf`)](#wpa-configuration-etcwpa_supplicantwpa_supplicantconf)  
+   4.2 [Netplan Configuration (`/etc/netplan/01-netcfg.yaml`)](#netplan-configuration-etcnetplan01-netcfgyaml)  
+   4.3 [Set Permissions & Apply](#set-permissions--apply)  
+   4.4 [Test Wi-Fi](#test-wi-fi)
+
+5. [Basic Protection & Security](#-5-basic-protection--security)  
+   5.1 [Harden the System](#harden-the-system)  
+   5.2 [ClamAV (Antivirus)](#clamav-antivirus)  
+   5.3 [chkrootkit (Rootkit Detection)](#chkrootkit-rootkit-detection)  
+   5.4 [rkhunter (Advanced Rootkit Detection)](#rkhunter-advanced-rootkit-detection)  
+   5.5 [fail2ban (Brute-Force Protection)](#fail2ban-brute-force-protection)  
+   5.6 [Example SSH Protection (`/etc/fail2ban/jail.local`)](#example-ssh-protection-etcfail2banjaillocal)  
+   5.7 [Apply Config](#apply-config)
+
+6. [Final Step](#-final-step)
+
+7. [Backup & Restore Script](#-backup--restore-script)  
+   7.1 [Features](#features)  
+   7.2 [Usage](#usage)  
+      7.2.1 [Create a backup](#create-a-backup)  
+      7.2.2 [Full system backup](#full-system-backup)  
+      7.2.3 [Restore a backup](#restore-a-backup)  
+      7.2.4 [Full restore including files](#full-restore-including-files)  
+   7.3 [Setup](#setup)  
+   7.4 [Pro Tip](#pro-tip)
+
+8. [Further Links](#-further-links)  
+   8.1 [Cap-2: x201 – Web Server & Database Setup](#cap-2-x201--web-server--database-setup)  
+   8.2 [Cap-3: Performance & Resilience Test (Tor Edition)](#cap-3-performance--resilience-test-tor-edition)  
+   8.3 [Ubuntu vs Debian for a System like Lenovo X201 (Server)](#ubuntu-vs-debian-for-a-system-like-lenovo-x201-server)
+
+9. [Support Note & Human Sanity Disclaimer™](#-support-note--human-sanity-disclaimer)
+
+10. [Support](#-support)  
+    10.1 [Star the repo](#star-the-repo)  
+    10.2 [Share it](#share-it)  
+    10.3 [Visit Volkan Sah](#visit-volkan-sah)  
+    10.4 [Support via GitHub Sponsors](#support-via-github-sponsors)
+
+11. [License](#-license)
+
+12. [Credits](#-credits)
+
 
 
 
