@@ -7,7 +7,6 @@ But when it comes to dynamic applications (PHP, Python, etc.), Apache still has 
 
 Don't believe the hype. Choose based on architecture – not marketing.
 
----
 
 ## Nginx Isn’t “Better” – It’s Just Different
 
@@ -24,7 +23,6 @@ Don't believe the hype. Choose based on architecture – not marketing.
 - No `.htaccess` support → configuration is centralized and less flexible
 - Many "enterprise" features are locked behind **Nginx Plus** (paid)
 
----
 
 ## Why Apache Shines in Dynamic Scenarios
 
@@ -43,7 +41,7 @@ LoadModule php_module modules/libphp.so
 > Example: High-traffic e-commerce site with lots of sessions and complex PHP logic
 > Result: mod\_php keeps response times consistent even under load.
 
----
+
 
 ### 2. `.htaccess` – Decentralized Power
 
@@ -62,7 +60,6 @@ RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
 > A WordPress multisite or Laravel app in shared hosting
 > → You don’t need root access to adjust behavior on a per-project level.
 
----
 
 ### 3. Rich Built-in Modules
 
@@ -77,7 +74,7 @@ Apache provides native modules with zero cost:
 
 > Nginx has similar capabilities only in its **commercial** version.
 
----
+
 
 ### 4. Multiple Application Roots
 
@@ -90,7 +87,7 @@ UserDir public_html
 * Isolated environments for staging/testing
 * No need for containers or external tooling
 
----
+
 
 ### 5. Embedded Status Monitoring
 
@@ -104,7 +101,7 @@ UserDir public_html
 * No external dashboards needed
 * Lightweight and useful for basic diagnostics
 
----
+
 
 ## Real-World Usage Comparison
 
@@ -117,7 +114,7 @@ UserDir public_html
 | Shared hosting or multi-user setups     | Apache      |
 | Reverse proxy in front of app server    | Nginx       |
 
----
+
 
 ## Benchmark Example (PHP 7.4)
 
@@ -133,7 +130,7 @@ ab -n 10000 -c 100 http://localhost/dynamic.php
 
 > Note: Apache performs better due to in-process PHP and lower IPC overhead.
 
----
+
 
 ## Hardware Matters
 
@@ -151,7 +148,6 @@ ab -n 10000 -c 100 http://localhost/dynamic.php
 
 > Memory "overhead" is irrelevant with modern hardware. Performance and simplicity win.
 
----
 
 ## The Nginx Plus Paywall
 
@@ -164,7 +160,7 @@ ab -n 10000 -c 100 http://localhost/dynamic.php
 | Metrics dashboard       | ✅ basic/status         | ❌                   | ✅          |
 | Hot config reload       | ✅ (.htaccess)          | ⚠️ limited          | ✅          |
 
----
+
 
 ## Apache Configuration – Modern and Efficient
 
@@ -182,7 +178,7 @@ ThreadsPerChild 25
 
 > Apache in 2024 isn’t bloated – it’s streamlined and ready to scale.
 
----
+
 
 ## Final Verdict: Use the Right Tool, Not the Loudest One
 
@@ -191,7 +187,7 @@ It’s stable, powerful, and battle-tested. Especially for dynamic applications,
 
 Nginx is great – when used for what it was designed for. But it’s **not** the better choice for every project.
 
----
+
 
 ## When to Choose Apache
 
@@ -200,7 +196,7 @@ Nginx is great – when used for what it was designed for. But it’s **not** th
 * You want a single binary with everything included
 * You need a mature, feature-complete HTTP server
 
----
+
 
 ## Summary
 
