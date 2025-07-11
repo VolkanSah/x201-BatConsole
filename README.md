@@ -316,7 +316,7 @@ If this helped you:
 
 ## License
 
-MIT License — see LICENSE file.
+Privat License for Freedom — see LICENSE file.
 
 ---
 
