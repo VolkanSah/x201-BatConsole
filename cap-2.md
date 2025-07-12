@@ -105,9 +105,8 @@ sudo ufw default deny incoming
 
 # Allow all outgoing connections
 sudo ufw default allow outgoing
-```
 
----
+```
 
 ### 🖧 Allow Secure Local Network Access
 
@@ -118,17 +117,15 @@ sudo ufw allow from 192.168.3.0/24 to any port 22 comment 'SSH from LAN'
 
 > ⚠️ Never open SSH to the world unless absolutely required and properly hardened!
 
----
 
 ### 🌐 Web Server Rules
 
 ```bash
 # Allow standard HTTP/HTTPS traffic
-sudo ufw allow 80 comment 'HTTP'
-sudo ufw allow 443 comment 'HTTPS'
-```
+sudo ufw allow 80/tcp comment 'HTTP'
+sudo ufw allow 443/tcp comment 'HTTPS'
 
----
+```
 
 ### 🗄️ Database Access — Local Only
 
@@ -152,7 +149,11 @@ If you're routing through **Tor hidden services** and plan to expose database po
 * Strong credentials
 * Encrypted transport (SSL/TLS or similar)
 
----
+### Reset UFW
+```
+sudo ufw reset
+```
+
 
 ### 🔁 Restart Services & Apply Rules
 
