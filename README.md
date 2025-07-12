@@ -4,15 +4,19 @@
 
 **Maybe the perfect server guide for you?**
 
-Don't let that old Lenovo X201 gather dust! Transform it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server – because true heroes don't let hardware rot in drawers. What runs well on this old clunker in 2025 will definitely run on your $20,000 server!
+Don't let that old Lenovo X201 gather dust!  
+Turn it into a whisper-quiet, rock-solid, Wi-Fi-enabled dev or home server – because true heroes don't let loyal hardware rot in drawers.  
 
->  This repo isn't just for Lenovo's ancient but loyal X201. It's a basic, no-nonsense server setup you can apply to almost any hardware: old laptops, desktops, or even that dusty machine in your basement.
->
->   Prefer Debian? That's fine too – the setup is nearly identical.
-> 
->  Curious why we chose Ubuntu over Debian for this guide?
-> > 
-> 👉 [Read more here](why-ubuntu.md)
+What runs smoothly on this vintage beast in 2025 will absolutely dominate on your overpriced $20,000 server.
+
+> This repo isn't just for Lenovo's ancient but faithful X201.  
+> It’s a minimalistic, no-BS server setup that works on almost anything: old laptops, desktops, or that dusty machine in your basement.
+
+Prefer Debian? No problem – the setup is nearly identical.  
+Curious why we went with Ubuntu instead?
+
+👉 [Read more here](why-ubuntu.md)
+
 
 
 # Table of Contents
@@ -39,10 +43,6 @@ Don't let that old Lenovo X201 gather dust! Transform it into a whisper-quiet, s
     - [Example SSH Protection](#example-ssh-protection)
     - [Apply Config](#apply-config)
 - [Final Step](#-final-step)
-- [Backup & Restore Script](#-backup--restore-script)
-  - [Features](#features)
-  - [Usage](#usage)
-  - [Setup](#setup)
 - [Cap-2: Web Server & Database Setup](cap-2.md)
 - [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
 - [Cap-4: Security Audit Suite for Tor Edition Systems](cap-3.md)
@@ -282,11 +282,28 @@ If this helped you:
 
 ## License
 
-Privat License for Freedom — see LICENSE file.
+## License
+
+🦇 **BatLicense (DBAD Edition) v1.0**  
+> A hybrid license for ethical hackers, builders, and responsible humans.
+
+### 📜 Core Terms  
+This project is licensed under the [Don't Be a Dick Public License](https://github.com/philsturgeon/dbad),  
+with the following **additional conditions**:
+
+- Don't be a dick.  
+- Respect open-source contributions.  
+- Don’t steal, resell, or wrap this in shady business practices.  
+- If you fork, contribute back. If you fix, share it.  
+- And most importantly: **Be Batman**.
 
 ---
 
-**Credits:** 
-- Mr.Chess alias Volan Sah
-- Readme.md Powered by Batman’s grind and ChatGPT wizardry. 🦇🔥
-- Claude Ai, Gemini and Deepssek inspirate me , the cross plattform work was nice to update my skills to :D 
+### ⚡ Credits
+
+- **Mr. Chess aka Volkan Sah** // also known as **Batman** 🦇  
+- **Markdown files powered by:**  
+  - Batman’s caffeine, rage, and grind  
+  - His bro **ChatGPT** (*Wizard-mode engaged*)  
+  - Sparring partners: **Claude AI**, **Gemini**, and **DeepSeek**  
+    > *Thanks for inspiring cross-platform chaos and code sanity.*
