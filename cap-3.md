@@ -90,13 +90,15 @@ dd if=~/testfile of=/dev/null bs=1M status=progress
 
 <details>
 <summary>Disk read speed Output</summary>
+    
     512+0 records in
     512+0 records out
     536870912 bytes (537 MB, 512 MiB) copied, 0,160587 s, 3,3 GB/s
+    
 </details>
 
 
-### Clean-up
+### Clean-up your testfile
 
 ```bash
 rm ~/testfile
@@ -125,6 +127,33 @@ If not installed:
 ```bash
 sudo apt install smartmontools
 ```
+
+<details>
+<summary>Example Disk Health Output</summary>
+    
+
+    SMART Attributes Data Structure revision number: 1
+    Vendor Specific SMART Attributes with Thresholds:
+    ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
+      5 Reallocated_Sector_Ct   0x0032   100   100   000    Old_age   Always       -       2
+      9 Power_On_Hours          0x0032   100   100   000    Old_age   Always       -       17136
+     12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       982
+    165 Total_Write/Erase_Count 0x0032   100   100   000    Old_age   Always       -       4313
+    ...
+    ...
+
+    SMART Error Log Version: 1
+    No Errors Logged
+
+    SMART Self-test log structure revision number 1
+    Num  Test_Description    Status                  Remaining  LifeTime(hours)  LBA_of_first_error
+    # 1  Short offline       Completed without error       00%     13723         -
+    # 2  Short offline       Aborted by host               90%     13723         -
+    ...
+    ...
+
+    
+</details>
 
 ---
 
