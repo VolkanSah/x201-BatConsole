@@ -314,3 +314,13 @@ apt list --upgradable
 ```
 
 You are not secure. You are just less vulnerable than yesterday.
+
+### Chapters
+
+- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
+- [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
+- [Cap-4: Security Audit Suite for Tor Edition Systems](cap-4.md)
+- [Cap-5: Server Hardening](cap-5.5md)
+- [Why Ubuntu and not Debain?)](why-ubuntu.md)
+- [Why Apache and not NGINX?](why-apache.md)
+
