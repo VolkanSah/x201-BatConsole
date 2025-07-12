@@ -160,6 +160,7 @@ ping -I wlp2s0 8.8.8.8            # Ping test via Wi-Fi
 ## 🔒 5. Basic Protection & Security
 
 ###  Harden the System
+#### Basics
 
 ```bash
 # Disable Dash as /bin/sh (for compatibility)
@@ -171,7 +172,7 @@ sudo systemctl stop apparmor
 sudo systemctl disable apparmor
 sudo apt purge apparmor apparmor-utils -y
 ```
-Update your etc/sysctl.conf like this [etc/sysctl.conf](etc/sysctl.conf)
+**more hardening at [capter-5](cap-5.md)**
 
 ### ClamAV (Antivirus)
 
