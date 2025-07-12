@@ -305,7 +305,7 @@ If this helped you:
 ## License
 
 🦇 **BatLicense (DBAD Edition) v1.0**  
-> A hybrid license for ethical hackers, builders, and responsible humans.
+> A hybrid license for ethical hackers, builders, and responsible humans. [LICENSE](LICENSE)
 
 ### 📜 Core Terms  
 This project is licensed under the [Don't Be a Dick Public License](https://github.com/philsturgeon/dbad),  
