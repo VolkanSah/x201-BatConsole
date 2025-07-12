@@ -53,6 +53,16 @@ Optional (single run hash):
 time openssl dgst -sha256 /bin/bash
 ```
 
+<details>
+<summary>openssl single run hash speed Output</summary>
+    
+    SHA2-256(/bin/bash)= bc594xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    real    0m0,026s
+    user    0m0,022s
+    sys     0m0,004s
+
+</details>
+
 ---
 
 ## 💾 Disk: Read/Write Benchmark
