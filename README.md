@@ -1,14 +1,17 @@
-#  x201 – BatConsole Setup & Tuning Guide 
-##  What to do with an old Lenovo X201?
+# x201 – BatConsole Setup & Tuning Guide
 
-Turn it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server — because heroes *don’t* let hardware rot in drawers.
+### What to do with an old Lenovo X201?
 
-> This repo isn’t just for Lenovo’s ancient but loyal X201 —
-> It’s a basic, no-nonsense server setup you can apply to almost any hardware: old laptops, desktops, even that dusty machine in your basement.
+**Maybe the perfect server guide for you?**
+
+Don't let that old Lenovo X201 gather dust! Transform it into a whisper-quiet, stable, Wi-Fi-enabled dev or home server – because true heroes don't let hardware rot in drawers. What runs well on this old clunker in 2025 will definitely run on your $20,000 server!
+
+>  This repo isn't just for Lenovo's ancient but loyal X201. It's a basic, no-nonsense server setup you can apply to almost any hardware: old laptops, desktops, or even that dusty machine in your basement.
 >
-> Prefer Debian? That’s fine too — the setup is nearly identical.
->
-> Curious why we use Ubuntu instead of Debian?
+>   Prefer Debian? That's fine too – the setup is nearly identical.
+> 
+>  Curious why we chose Ubuntu over Debian for this guide?
+> > 
 > 👉 [Read more here](why-ubuntu.md)
 
 
