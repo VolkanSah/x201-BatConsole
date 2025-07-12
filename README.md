@@ -2,33 +2,36 @@
 
 ### What to do with an old Lenovo X201?
 
-**Turn it into a full-featured, hardened, development and AI-ready home server.**
+**Turn it into a full-featured, hardened development and AI-ready home server — all for less than $50.**
 
-This isn’t some minimalistic “just get it running” script – this is the full deal:  
-A fully tuned server setup built for real-world devs, sysadmins, privacy nerds, and even AI explorers for less than 50 $
+This isn’t some minimalistic “just get it running” script — this is the full deal:  
+A fully tuned server setup built for real-world devs, sysadmins, privacy nerds, and AI explorers.
 
 What’s included:
-- ⚙️ Full development stack (Apache, PHP, Python, and more)
-- 🛡️ Security hardening (firewall, headers, sysctl, mod_security, fail2ban)
-- 🤖 AI compatibility (for local models and LLM workflows)
-- 📡 Wi-Fi-ready for mobile or indoor deployments
-- 🧪 Testing tools & practical use cases
-- ☕ And much more... you’ll need time – and a lot of coffee
+- ⚙️ Full development stack (Apache, PHP, Python, and more)  
+- 🛡️ Security hardening (firewall, headers, sysctl, mod_security, fail2ban)  
+- 🤖 AI compatibility (for local models and LLM workflows)  
+- 📡 Wi-Fi-ready for mobile or indoor deployments  
+- 🧪 Testing tools & practical use cases  
+- ☕ And much more... you’ll need time — and a lot of coffee.
 
-> This repo uses the legendary X201 as proof of concept.  
+> This repo uses the legendary X201 M520 i5 (8GB Samsung RAM + a $20 Sandisk SSD Plus)  
+> with original hardware and Nano Plastic Cooling paste. The results are incredible —  
+> it even blows AI minds, because real-world speeds don’t match training data assumptions.  
+>  
 > If it runs *smoothly* on this 2010 laptop, it'll **crush it** on any modern machine.
 
 > TL;DR: **Old laptop? Spare desktop? Forgotten NUC?**  
-> This guide turns it into a reliable, secure, and powerful machine – no cloud required, no corporate fluff.
+> This guide turns it into a reliable, secure, and powerful machine — no cloud required, no corporate fluff.
 
 ---
 
 ### 🔍 Extra Docs Included
 
-Prefer Debian? No problem – the setup is almost identical.  
+Prefer Debian? No problem — the setup is almost identical.  
 Curious about the software stack choices?
 
-- 👉 [`why-ubuntu.md`](why-ubuntu.md) – Why this project chose Ubuntu over Debian
+- 👉 [`why-ubuntu.md`](why-ubuntu.md) – Why this project chose Ubuntu over Debian  
 - 👉 [`why-apache.md`](why-apache.md) – Why Apache is still the king for dynamic applications
 
 
