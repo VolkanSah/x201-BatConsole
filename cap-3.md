@@ -88,6 +88,14 @@ dd if=/dev/zero of=~/testfile bs=1M count=512 status=progress
 dd if=~/testfile of=/dev/null bs=1M status=progress
 ```
 
+<details>
+<summary>Disk read speed Output</summary>
+    512+0 records in
+    512+0 records out
+    536870912 bytes (537 MB, 512 MiB) copied, 0,160587 s, 3,3 GB/s
+</details>
+
+
 ### Clean-up
 
 ```bash
