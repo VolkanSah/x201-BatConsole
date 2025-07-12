@@ -313,6 +313,7 @@ echo "=== System Updates ==="
 apt list --upgradable
 ```
 
+--- 
 ## 🏁 You made it!
 
 Thanks for surviving this beautifully chaotic tutorial.  
@@ -320,24 +321,33 @@ If you learned something, laughed once, or just feel 2% smarter — drop a ⭐.
 
 If you’re planning to fork it, test it, break it — even better.
 
-Remember: 
-
+Remember:  
 **You are not secure. You are just less vulnerable than yesterday.**
 
----
+
+
+## 🤖 Special thanks
+
+Big shoutout to all the AIs who helped debug, sort data, and keep me (mostly) sane during this ride —  
+even when they occasionally dumped more output than the poor server could handle.  
+Still, without you: this repo would be half the madness it is now. Respect.
+
+
 
 ## ☕ Wanna say thanks?
 
 If you ever get rich:  
-Three coffees would be cool. If not — respect. We're in the same Batboat.
+Three coffees would be cool.  
+If not — respect. We're in the same Batboat.
 
----
+
 
 ### 📚 Chapters
-- [Cap-1: Home](README.md)  
+- [Cap-1: HomeBase](README.md.md)  
 - [Cap-2: x201 – Web Server & Database Setup](cap-2.md)  
 - [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)  
 - [Cap-4: Security Audit Suite for Tor Edition Systems](cap-4.md)  
 - [Cap-5: Server Hardening](cap-5.5md)  
 - [Why Ubuntu and not Debian?](why-ubuntu.md)  
 - [Why Apache and not NGINX?](why-apache.md)
+
