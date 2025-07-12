@@ -24,6 +24,10 @@ AllowUsers yourusername
 ```bash
 sudo systemctl restart sshd
 ```
+or
+```
+sudo systemctl restart ssh.service
+```
 
 **Validation**
 ```bash
