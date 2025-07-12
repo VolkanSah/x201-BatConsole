@@ -231,7 +231,7 @@ sudo systemctl restart fail2ban
 
 ## 🎉 Final Step
 
-Your X201 is now optimized and secured. Reboot the system to apply all changes:
+Your X201 is now basic optimized and basic secured. Reboot the system to apply all changes and go to second Chapter
 
 ```bash
 sudo reboot
@@ -239,53 +239,14 @@ sudo reboot
 
 
 
-## 💾 Backup & Restore Script
+### Chapters
 
-To quickly and securely back up your system after a fresh setup, use the [Backup & Restore Script](https://github.com/VolkanSah/Debian-System-Backup-and-Restore-Script/).
-
-### Features
-
-* Saves installed packages, config files, and optionally the full file system (excluding core system dirs)
-* Stores backups in `/backup/YYYYMMDD_HHMMSS` automatically
-* Logs every step into the backup folder
-* Restores packages, configs, and optionally full system structure
-
-### Usage
-
-**Create a backup:**
-
-```bash
-sudo /batscripts/backup.sh backup
-```
-
-For full system backup:
-
-```bash
-sudo /batscripts/backup.sh backup full
-```
-
-**Restore a backup:**
-
-```bash
-sudo /batscripts/backup.sh restore /backup/20250709_191251
-```
-
-Full restore including files:
-
-```bash
-sudo /batscripts/backup.sh restore /backup/20250709_191251 full
-```
-
-### Setup
-
-* Place the script under e.g. `/batscripts/backup.sh`
-* Grant execution: `sudo chmod +x /batscripts/backup.sh`
-* Optional: Add an alias like `batbackup`
-
-### Pro Tip
-
-Use a cronjob for automatic backups and stay safe at all times.
-
+- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
+- [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
+- [Cap-4: Security Audit Suite for Tor Edition Systems](cap-4.md)
+- [Cap-5: Server Hardening](cap-5.5md)
+- [Why Ubuntu and not Debain?)](why-ubuntu.md)
+- [Why Apache and not NGINX?](why-apache.md)
 
 
 
@@ -328,3 +289,4 @@ Privat License for Freedom — see LICENSE file.
 **Credits:** 
 - Mr.Chess alias Volan Sah
 - Readme.md Powered by Batman’s grind and ChatGPT wizardry. 🦇🔥
+- Claude Ai, Gemini and Deepssek inspirate me , the cross plattform work was nice to update my skills to :D 
