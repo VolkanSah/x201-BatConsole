@@ -1,4 +1,5 @@
-# 🔧 Cap-3: Performance & Resilience Test Suite for ThinkPad X201 (Tor Edition)
+# 🔧 Cap-3: Performance & Resilience Test Suite 
+### for ThinkPad X201 only? (Tor Edition)
 
 Welcome to Cap-3 — the testing chapter of your Tor-based infrastructure on legacy systems.  
 This guide provides **non-intrusive, install-free** performance and security-related tests, designed for **paranoid setups** like your trusted ThinkPad X201.
