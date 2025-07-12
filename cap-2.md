@@ -256,7 +256,14 @@ ffmpeg ghostscript webp certbot
 ---
 
 
+### Next Steps
 
+- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
+- [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
+- [Cap-4: Security Audit Suite for Tor Edition Systems](cap-3.md)
+- [Cap-5: Server Hardening](cap-5,md)
+- [Why Ubuntu and not Debain?)](why-ubuntu.md)
+- [Why Apache and not NGINX?](why-apache.md)
 
 ## 8. Useful Links
 
