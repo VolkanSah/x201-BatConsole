@@ -26,6 +26,27 @@ This guide provides **non-intrusive, install-free** performance and security-rel
 ```bash
 openssl speed sha256
 ````
+<details>
+  ```shell
+openssl speed sha256
+Doing sha256 for 3s on 16 size blocks: 5374056 sha256's in 3.00s
+Doing sha256 for 3s on 64 size blocks: 3564538 sha256's in 2.99s
+Doing sha256 for 3s on 256 size blocks: 1729758 sha256's in 2.99s
+Doing sha256 for 3s on 1024 size blocks: 552553 sha256's in 3.00s
+Doing sha256 for 3s on 8192 size blocks: 77320 sha256's in 3.00s
+Doing sha256 for 3s on 16384 size blocks: 39082 sha256's in 2.99s
+version: 3.0.13
+built on: Wed Feb  5 13:17:43 2025 UTC
+options: bn(64,64)
+compiler: gcc -fPIC -pthread -m64 -Wa,--noexecstack -Wall -fzero-call-used-regs=                                     used-gpr -DOPENSSL_TLS_SECURITY_LEVEL=2 -Wa,--noexecstack -g -O2 -fno-omit-frame                                     -pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/openssl-7xongr/op                                     enssl-3.0.13=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werro                                     r=format-security -fcf-protection -fdebug-prefix-map=/build/openssl-7xongr/opens                                     sl-3.0.13=/usr/src/openssl-3.0.13-0ubuntu3.5 -DOPENSSL_USE_NODELETE -DL_ENDIAN -                                     DOPENSSL_PIC -DOPENSSL_BUILDING_OPENSSL -DNDEBUG -Wdate-time -D_FORTIFY_SOURCE=3
+CPUINFO: OPENSSL_ia32cap=0x29ae3ffffebffff:0x0
+The 'numbers' are in 1000s of bytes per second processed.
+type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes  1                                     6384 bytes
+sha256           28661.63k    76297.80k   148099.68k   188604.76k   211135.15k                                        214153.67k
+ ```
+
+  
+</details>
 
 Optional (single run hash):
 
