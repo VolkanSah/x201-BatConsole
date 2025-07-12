@@ -130,21 +130,16 @@ sudo iptables -L -n -v
 ServerTokens Prod
 ServerSignature Off
 
-# Security headers
+# Basic Security headers
+
 Header always set X-Content-Type-Options nosniff
 Header always set X-Frame-Options DENY
 Header always set X-XSS-Protection "1; mode=block"
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-Header always set Content-Security-Policy "default-src 'self'"
+
 
 # Disable server status
-<Location "/server-status">
-    Require all denied
-</Location>
 
-<Location "/server-info">
-    Require all denied
-</Location>
 ```
 
 **Enable security configuration**
