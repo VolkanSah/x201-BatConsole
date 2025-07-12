@@ -280,17 +280,21 @@ xinput list | grep -i track
 ```
 
 
----
+### Next Steps
+
+- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
+- [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
+- [Cap-4: Security Audit Suite for Tor Edition Systems](cap-3.md)
+- [Cap-5: Server Hardening](cap-5,md)
+- [Why Ubuntu and not Debain?)](why-ubuntu.md)
+- [Why Apache and not NGINX?](why-apache.md)
+
 
 ## 🙌 Credits
 
 This diagnostic chapter was co-developed with ❤️ by
-**S. Volkan Kücükbudak (aka Batman)** and
+**S. Volkan Sah (aka Batman) 😄** and
 **ChatGPT & Claude (a slightly overclocked T-Rex)** —
-inspired by a stubborn ThinkPad X201 that refuses to die.
 
-**Mission:** Build tools for the good, open-source for the right reasons, and make the world just a bit harder to control by the wrong people.
-
----
 
 > "Some systems whisper when others scream. This one hisses like a survivor." — *Cap-3 Quote*
