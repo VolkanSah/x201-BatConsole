@@ -24,12 +24,11 @@ This guide provides **non-intrusive, install-free** performance and security-rel
 ## 🧠 CPU: Hash Testing
 
 ```bash
-openssl speed sha256
+openssl speed sha256 for our x201
 ````
 <details>
 <summary>openssl speed sha256 Output</summary>
 
-    openssl speed sha256
     Doing sha256 for 3s on 16 size blocks: 5374056 sha256's in 3.00s
     Doing sha256 for 3s on 64 size blocks: 3564538 sha256's in 2.99s
     Doing sha256 for 3s on 256 size blocks: 1729758 sha256's in 2.99s
