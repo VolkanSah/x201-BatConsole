@@ -53,11 +53,7 @@ sudo sysctl -a | grep -E "rp_filter|accept_redirects|send_redirects|accept_sourc
 
 **Lock down sudo access**
 ```bash
-# Edit /etc/sudoers with visudo
-sudo visudo
-
-# Add specific commands only
-username ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart nginx, /usr/bin/systemctl status nginx
+??
 ```
 
 **Disable unused accounts**
