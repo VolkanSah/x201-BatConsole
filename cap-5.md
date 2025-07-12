@@ -162,9 +162,12 @@ sudo systemctl reload apache2
 
 **Validation**
 ```bash
-curl -I http://localhost | grep -E "Server:|X-"
+curl -I http://127.0.0.1 | grep -E "Server:|X-"
 apache2ctl -t
 ```
+##### Advanced security tipps (be carful!)
+- [ModSecurity Webserver Protection Guide](https://github.com/VolkanSah/ModSecurity-Webserver-Protection-Guide)
+- [Security Headers Explained](https://github.com/VolkanSah/Security-Headers)
 
 ## Logging and Monitoring
 
