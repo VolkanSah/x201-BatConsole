@@ -280,7 +280,7 @@ xinput list | grep -i track
 ```
 
 
-### Next Steps
+### Chapters
 
 - [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
 - [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
@@ -288,7 +288,6 @@ xinput list | grep -i track
 - [Cap-5: Server Hardening](cap-5,md)
 - [Why Ubuntu and not Debain?)](why-ubuntu.md)
 - [Why Apache and not NGINX?](why-apache.md)
-
 
 ## 🙌 Credits
 
