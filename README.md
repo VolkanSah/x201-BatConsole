@@ -76,7 +76,7 @@ Curious about the software stack choices?
 - [License](#license)
 
 
-
+Let us start: First you must learn some basics
 
 ## ⚙️ 1. System Optimization & Cooling
 
@@ -195,7 +195,7 @@ sudo systemctl stop apparmor
 sudo systemctl disable apparmor
 sudo apt purge apparmor apparmor-utils -y
 ```
-**more hardening at [capter-5](cap-5.md)**
+
 
 ### ClamAV (Antivirus)
 
@@ -247,7 +247,7 @@ findtime = 600
 sudo systemctl restart fail2ban
 ```
 
-
+**more hardening in  [capter-5](cap-5.md)**
 
 
 
@@ -263,7 +263,7 @@ sudo reboot
 
 ### Chapters
 
-- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
+- [Cap-2: x201 – Web Server & Database Setup](cap-2.md) <- next step?
 - [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
 - [Cap-4: Security Audit Suite for Tor Edition Systems](cap-4.md)
 - [Cap-5: Server Hardening](cap-5.5md)
@@ -277,32 +277,29 @@ sudo reboot
 
 ## 🤖 Support Note & Human Sanity Disclaimer™
 
-> This project was born not just from curiosity, but mostly because I was too lazy to remember every damn package and config flag.
-> So I asked some AI buddies – ChatGPT, Deepseek, and a few others. They tried hard... but mostly just repeated the same sanitized tech-manual fluff.
-> In the end, it always takes a stubborn human with a **Thank Pad** (yes, *ThinkPad*) to fix the chaos and make things actually work™.
->
-> This whole setup was handcrafted with caffeine, rage against broken tutorials, deep system logs, and a little help from not-so-evil AI.
->
-> ✨ **AI isn’t evil. But humans can be.** Let’s use the machine to build, not to break.
-> 
-> ⭐️ If this project helped you, drop a star.
-> 
-> 🥖 If you’re rich: sponsor me.
-> 
-> 🫡 If you’re broke too: respect – now go fix your own ThankPad™.
+This project was born not just from curiosity, but mostly because I was too lazy to remember every damn package and config flag.  
+So I asked some AI buddies – ChatGPT, DeepSeek, and a few others. They tried hard... but mostly just repeated the same sanitized tech-manual fluff.  
+In the end, it always takes a stubborn human with a **Thank Pad** (yes, *ThinkPad*) to fix the chaos and make things actually work™.
+
+This whole setup was handcrafted with caffeine, rage against broken tutorials, deep system logs, and a little help from not-so-evil AI.
+
+✨ **AI isn’t evil. But humans can be.** Let’s use the machine to build, not to break.
+
+⭐ If this project helped you, drop a star.  
+🥖 If you’re rich: sponsor me.  
+🫡 If you’re broke too: respect – now go fix your own ThankPad™.
+
 
 ## Support
 
 If this helped you:
 
-* ⭐ the repo
-* Share it
-* Visit [Volkan Sah](https://github.com/volkansah)
+* ⭐ the repo  
+* Share it  
+* Visit [Volkan Sah](https://github.com/volkansah)  
 * [Support via GitHub Sponsors](https://github.com/sponsors/volkansah)
 
 ---
-
-## License
 
 ## License
 
@@ -329,3 +326,4 @@ with the following **additional conditions**:
   - His bro **ChatGPT** (*Wizard-mode engaged*)  
   - Sparring partners: **Claude AI**, **Gemini**, and **DeepSeek**  
     > *Thanks for inspiring cross-platform chaos and code sanity.*
+
