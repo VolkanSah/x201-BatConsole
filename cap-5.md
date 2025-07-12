@@ -62,19 +62,23 @@ username ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart nginx, /usr/bin/systemct
 
 **Disable unused accounts**
 ```bash
-# CHECK FIRST - only disable what you actually don't need
+# First check what accounts exist and their purpose
+cat /etc/passwd | grep -E "nobody|daemon|bin|sys|sync|games|man|lp|mail|news|uucp|proxy|www-data|backup|list|irc"
+
+# Only disable accounts you actually don't need
 # Common candidates for most setups:
 sudo usermod -L -s /bin/false games
-sudo usermod -L -s /bin/false news  
+sudo usermod -L -s /bin/false news
 sudo usermod -L -s /bin/false uucp
 sudo usermod -L -s /bin/false irc
 
-# CAREFUL - these might be needed:
-# www-data (web server)
+# CAREFUL - these might be needed depending on your services:
+# www-data (web server - DO NOT disable if running Apache/Nginx)
 # mail (mail services)
 # proxy (proxy services) 
 # backup (backup scripts)
 # nobody (some services use this)
+# daemon (system services)
 ```
 
 **Validation**
