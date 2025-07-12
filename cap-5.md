@@ -313,14 +313,31 @@ echo "=== System Updates ==="
 apt list --upgradable
 ```
 
-You are not secure. You are just less vulnerable than yesterday.
+## 🏁 You made it!
 
-### Chapters
+Thanks for surviving this beautifully chaotic tutorial.  
+If you learned something, laughed once, or just feel 2% smarter — drop a ⭐.
 
-- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
-- [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
-- [Cap-4: Security Audit Suite for Tor Edition Systems](cap-4.md)
-- [Cap-5: Server Hardening](cap-5.5md)
-- [Why Ubuntu and not Debain?)](why-ubuntu.md)
+If you’re planning to fork it, test it, break it — even better.
+
+Remember: 
+
+**You are not secure. You are just less vulnerable than yesterday.**
+
+---
+
+## ☕ Wanna say thanks?
+
+If you ever get rich:  
+Three coffees would be cool. If not — respect. We're in the same Batboat.
+
+---
+
+### 📚 Chapters
+- [Cap-1: Home](README.md)  
+- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)  
+- [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)  
+- [Cap-4: Security Audit Suite for Tor Edition Systems](cap-4.md)  
+- [Cap-5: Server Hardening](cap-5.5md)  
+- [Why Ubuntu and not Debian?](why-ubuntu.md)  
 - [Why Apache and not NGINX?](why-apache.md)
-
