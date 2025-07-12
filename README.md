@@ -68,7 +68,7 @@ Curious about the software stack choices?
 - [Cap-2: Web Server & Database Setup](cap-2.md)
 - [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
 - [Cap-4: Security Audit Suite for Tor Edition Systems](cap-3.md)
-- [Cap-5: Server Hardening](cap-5,md)
+- [Cap-5: Server Hardening](cap-5.md)
 - [Why Ubuntu and not Debain?)](why-ubuntu.md)
 - [Why Apache and not NGINX?](why-apache.md)
 - [Support Note & Human Sanity Disclaimer™](#-support-note--human-sanity-disclaimer)
