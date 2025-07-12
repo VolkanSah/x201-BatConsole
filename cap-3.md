@@ -74,7 +74,7 @@ dd if=/dev/zero of=~/testfile bs=1M count=512 status=progress
 ```
 
 <details>
-<summary>Disk write speed Output/summary>
+<summary>Disk write speed Output</summary>
 
     512+0 records in
     512+0 records out
