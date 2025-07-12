@@ -2,8 +2,9 @@
 
 ### What to do with an old Lenovo X201?
 
-**Turn it into a full-featured, hardened development and AI-ready home server — all for less than $50. 
-Or just a cool server guide for your $20,000 beast.**
+**Turn it into a full-featured, hardened development and AI-ready home server — all for less than $50. **
+
+-> **Or just a cool server guide for your $20,000 beast.**
 
 This isn’t some minimalistic “just get it running” script — this is the full deal:  
 A fully tuned server setup built for real-world devs, sysadmins, privacy nerds, and AI explorers.
