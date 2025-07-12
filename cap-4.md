@@ -408,4 +408,13 @@ echo "IPv6: $(ip -6 addr show | grep -v ::1 | wc -l)" && \
 echo "Open Ports: $(ss -tuln | grep -v 127.0.0.1 | wc -l)" && \
 echo "Root Procs: $(ps aux | awk '$1=="root"' | wc -l)"
 ```
+### Chapters
+
+- [Cap-2: x201 – Web Server & Database Setup](cap-2.md)
+- [Cap-3: Performance & Resilience Test (Tor Edition)](cap-3.md)
+- [Cap-4: Security Audit Suite for Tor Edition Systems](cap-4.md)
+- [Cap-5: Server Hardening](cap-5.5md)
+- [Why Ubuntu and not Debain?)](why-ubuntu.md)
+- [Why Apache and not NGINX?](why-apache.md)
+
 
