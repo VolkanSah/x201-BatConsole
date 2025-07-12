@@ -72,6 +72,7 @@ time openssl dgst -sha256 /bin/bash
 ```bash
 dd if=/dev/zero of=~/testfile bs=1M count=512 status=progress
 ```
+
 <details>
 <summary>Disk write speed Output/summary>
 
@@ -80,6 +81,7 @@ dd if=/dev/zero of=~/testfile bs=1M count=512 status=progress
     536870912 bytes (537 MB, 512 MiB) copied, 0,466591 s, 1,2 GB/s
 
 </details>
+
 ### Read Speed
 
 ```bash
