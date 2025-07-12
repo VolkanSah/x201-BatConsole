@@ -87,9 +87,13 @@ cat /etc/passwd | grep -E "nobody|daemon|bin|sys|sync|games|man|lp|mail|news|uuc
 sudo -l
 ```
 
+
 ## Firewall Configuration
 
-**UFW basic setup** for Public
+If you've already configured your firewall rules according to this guide, you do not need to rewrite them. Refer to the [Basic Firewall Rules (UFW) for Local & Secure Server Setups](https://www.google.com/search?q=https://github.com/VolkanSah/x201-BatConsole/blob/VolkanSah-patch-1/cap-2.md%23basic-firewall-rules-ufw-for-local--secure-server-setups) for the recommended setup.
+
+**UFW Basic Setup for Public Servers**
+
 ```bash
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
