@@ -89,7 +89,7 @@ sudo -l
 
 ## Firewall Configuration
 
-**UFW basic setup**
+**UFW basic setup** for Public
 ```bash
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
