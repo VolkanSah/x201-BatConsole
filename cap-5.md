@@ -1,5 +1,22 @@
 # Chapter 5: Server Hardening
 
+Table of Contents:
+- [Warning](#warning)
+- [SSH Hardening](#ssh-hardening)
+- [Secure Shared Memory](#secure-shared-memory)
+- [Kernel Security (sysctl)](#kernel-security-sysctl)
+- [User Privileges and sudo](#user-privileges-and-sudo)
+- [Firewall Configuration](#firewall-configuration)
+- [Apache Security](#apache-security)
+- [Logging and Monitoring](#logging-and-monitoring)
+- [File System Security](#file-system-security)
+- [Network Security](#network-security)
+- [Manual Verification Points](#manual-verification-points)
+- [You made it!](#you-made-it)
+- [Special thanks](#special-thanks)
+- [Wanna say thanks?](#wanna-say-thanks)
+
+
 ## Warning
 
 This is not a security guarantee. This is damage reduction. You are responsible for your own infrastructure. These configurations will break things. Test before production. No support provided.
