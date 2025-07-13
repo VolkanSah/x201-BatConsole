@@ -78,10 +78,38 @@ sudo sysctl -a | grep -E "rp_filter|accept_redirects|send_redirects|accept_sourc
 
 ## User Privileges and sudo
 
-**Lock down sudo access**
 ```bash
-??
+# Only allow specific users to use sudo
+sudo visudo
 ```
+
+Dann in der Datei (am besten ganz unten) sowas eintragen:
+
+```bash
+# Only allow your user(s)
+yourusername ALL=(ALL:ALL) ALL
+```
+
+Und ggf. `sudo` für andere Gruppen deaktivieren (z. B. wheel oder sudo group):
+
+```bash
+sudo deluser <username> sudo
+```
+
+**Validation**
+
+```bash
+sudo -l
+getent group sudo
+```
+
+
+
+
+
+
+
+
 
 **Disable unused accounts**
 ```bash
