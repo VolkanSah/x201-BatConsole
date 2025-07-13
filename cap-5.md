@@ -35,6 +35,16 @@ sudo sshd -t
 grep -E "^(PermitRootLogin|PasswordAuthentication|Port)" /etc/ssh/sshd_config
 ```
 
+
+## Secure Shared Memory 
+#### fstab Hardening:
+
+Modify /etc/fstab to include the line: 
+```bash
+        tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0. 
+```
+This prevents execution of code from shared memory and disables set-user-identifier or set-group-identifier bits
+
 ## Kernel Security (sysctl)
 
 Harden your Linux kernel security by configuring sysctl parameters. You can either add rules directly to /etc/sysctl.conf or, preferably, create /etc/sysctl.d/99-security.conf and input [this rules](etc/sysctl.conf) there.
