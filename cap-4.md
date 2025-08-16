@@ -386,7 +386,7 @@ cat /tmp/security_report.txt
 ## 🙌 Credits
 
 This security audit framework was battle-tested with ❤️ by  
-**S. Volkan Kücükbudak (aka Batman)** on legacy and modern systems alike.
+**S. Volkan Sah ** on legacy and modern systems alike.
 
 **Mission:** Build paranoid-level security for the good, open-source for the right reasons, and make surveillance just a bit harder for the wrong people.
 
